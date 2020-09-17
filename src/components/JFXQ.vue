@@ -4,38 +4,33 @@
       <div class="main_box center-x">
         <div class="main_left">
           <div>
-            <el-button class="button ">保 存</el-button>
             <el-button class="button " style="background-color: #FFFFFF;color: #707070;" @click="back">返 回</el-button>
           </div>
         </div>
         <div class="main_main">
-          <div class="title">{{serverData.title}}</div>
           <div class="main_cen">
             <div class="main_cen_left">
-              <div>性别：</div>
-              <div>工号：</div>
-              <div>手机号：</div>
-              <div>部门：</div>
-              <div>密码：</div>
-              <div>负责流程：</div>
+              <div>缴费流水号：</div>
+              <div>缴费项目：</div>
+              <div>缴费金额：</div>
+              <div>姓名：</div>
+              <div>学号：</div>
+              <div>手机：</div>
+              <div>班级：</div>
+              <div>班主任：</div>
+              <div>缴费时间：</div>
             </div>
             <div class="main_cen_right">
-              <div>{{serverData.sex}}</div>
-              <div>{{serverData.gongHao}}</div>
+              <div>{{serverData.liuShui}}</div>
+              <div>{{serverData.xiangMu}}</div>
+              <div>{{serverData.jinE}}</div>
+              <div>{{serverData.name}}</div>
+              <div>{{serverData.xueHao}}</div>
               <div>{{serverData.tel}}</div>
-              <div>
-                <span v-if="serverData.buMen.length!=0">{{serverData.buMen}}</span>
-                <span v-else class="dx" @click="open(1)">+</span>
-                <img v-if="serverData.buMen.length!=0" @click="serverData.buMen=''" src="../../static/icon8.jpg" class="center-y"
-                  alt="">
-              </div>
-              <div>{{serverData.passWord}}</div>
-              <div>
-                <span v-if="serverData.liuC.length!=0">{{serverData.liuC}}</span>
-                <span v-else class="dx" @click="open(0)">+</span>
-                <img v-if="serverData.liuC.length!=0" @click="serverData.liuC=''" src="../../static/icon8.jpg" class="center-y"
-                  alt="">
-              </div>
+              <div>{{serverData.class}}</div>
+              <div>{{serverData.BZR}}</div>
+              <div>{{serverData.time}}</div>
+              <div>{{serverData.payType}}</div>
             </div>
           </div>
         </div>
@@ -51,13 +46,16 @@
     data() {
       return {
         serverData: {
-          title: "聂辛庄",
-          sex:"男",
-          gongHao: "130921200212305612",
-          tel: "15139225822",
-          buMen: "民族武术",
-          passWord: "********",
-          liuC: "招就处"
+          liuShui:"130921200212305612",
+          xiangMu:"2020-2021学年春秋校服费",
+          jinE:"500",
+          name:"任宝协",
+          xueHao:"308201309092700188",
+          tel:"18860157403",
+          class:"民族武术601班",
+          BZR:"陈新雷",
+          time:"2020-10-21 16:05:31",
+          payType:"微信"
         }
       }
     },
@@ -159,7 +157,6 @@
 
   .main_main {
     width: 90%;
-    padding-left: 10%;
     float: left;
     box-sizing: border-box;
     color: #707070;
@@ -176,7 +173,7 @@
   }
 
   .main_cen_left {
-    width: 80px;
+    width: 100px;
     text-align: right;
     float: left;
     line-height: 30px;

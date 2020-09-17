@@ -173,10 +173,9 @@
     text-align: right;
     width: 20%;
     float: left;
-    line-height: 25px;
+    line-height: 35px;
     font-weight: 900;
     letter-spacing: 0.32px;
     color: #707070;
-    font-size: 12px;
   }
 </style>

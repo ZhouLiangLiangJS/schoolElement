@@ -19,156 +19,156 @@
         <div class="main_main">
           <div class="main_nav">
             <span>报名新生一览表：</span>
-            <el-button class="button" @click="handleRouter">添加新生信息</el-button>
+            <el-button class="button">添加新生信息</el-button>
             <div class="search">
               <input type="text" class="center-y" placeholder="身份证、学号、手机号、姓名">
               <el-button class="button center-y">搜 索</el-button>
             </div>
           </div>
-          <div data-v-957c9522="" class="main_zhuye">
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
+          <div  class="main_zhuye">
+            <div  class="main_zhuye_titile" style="
               width: 8%;
           ">
               姓 名
             </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
+            <div  class="main_zhuye_titile" style="
               width: 4%;
           ">
               性别
             </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
+            <div  class="main_zhuye_titile" style="
               width: 4%;
           ">
               年龄
             </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
+            <div  class="main_zhuye_titile" style="
               width: 8%;
           ">
               中考分数
             </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
+            <div  class="main_zhuye_titile" style="
               width: 9%;
           ">
               报考专业
             </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
+            <div  class="main_zhuye_titile" style="
               width: 5%;
           ">
               生源
             </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
+            <div  class="main_zhuye_titile" style="
               width: 5%;
           ">
               学制
             </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
+            <div  class="main_zhuye_titile" style="
               width: 5%;
           ">
               家庭
             </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
+            <div  class="main_zhuye_titile" style="
               width: 8%;
           ">
               报名时间
             </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
+            <div  class="main_zhuye_titile" style="
               width: 8%;
           ">
               招生老师
             </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
+            <div  class="main_zhuye_titile" style="
               width: 36%;
           ">
-              <div data-v-957c9522="">
+              <div >
                 审核
               </div>
-              <div data-v-957c9522="">
-                审核
+              <div >
+                缴费
               </div>
-              <div data-v-957c9522="">
-                审核
+              <div >
+                分班
               </div>
-              <div data-v-957c9522="">
-                审核
+              <div >
+                测评
               </div>
-              <div data-v-957c9522="">
-                审核
+              <div >
+                选床
               </div>
-              <div data-v-957c9522="">
-                审核
+              <div >
+                物品
               </div>
             </div>
           </div>
-          <div class="mian_school" v-for="i in 10">
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
+          <div class="mian_school" v-for="i in 10"  @click="handleRouter">
+            <div  class="main_zhuye_titile" style="
                 width: 8%;
             ">
               彭冻革
             </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
+            <div  class="main_zhuye_titile" style="
                 width: 4%;
             ">
               男
             </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
+            <div  class="main_zhuye_titile" style="
                 width: 4%;
             ">
               15
             </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
+            <div  class="main_zhuye_titile" style="
                 width: 8%;
             ">
               148
             </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
+            <div  class="main_zhuye_titile" style="
                 width: 9%;
             ">
               木叶
             </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
+            <div  class="main_zhuye_titile" style="
                 width: 5%;
             ">
               应届生
             </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
+            <div  class="main_zhuye_titile" style="
                 width: 5%;
             ">
               3+2
             </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
+            <div  class="main_zhuye_titile" style="
                 width: 5%;
             ">
               农业
             </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
+            <div  class="main_zhuye_titile" style="
                 width: 8%;
             ">
               11-24 23:12
             </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
+            <div  class="main_zhuye_titile" style="
                 width: 8%;
             ">
               谢大海
             </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
+            <div  class="main_zhuye_titile" style="
                 width: 36%;
             ">
-              <div data-v-957c9522="">
+              <div >
                 ●
               </div>
-              <div data-v-957c9522="">
+              <div >
                 ●
               </div>
-              <div data-v-957c9522="">
+              <div >
                 ●
               </div>
-              <div data-v-957c9522="">
+              <div >
                 ○
               </div>
-              <div data-v-957c9522="">
+              <div >
                 ○
               </div>
-              <div data-v-957c9522="">
+              <div >
                 ○
               </div>
             </div>
@@ -262,7 +262,6 @@
     background: #F5F5F5 0% 0% no-repeat padding-box;
     float: left;
     position: relative;
-    font-size: 14px;
   }
 
   .main_box {
@@ -284,11 +283,9 @@
     width: 19.32vw;
     float: left;
     height: 100%;
-    line-height: 13vh;
     background-color: #FFFFFF;
     box-shadow: 0px 3px 2px #00000029;
     border: 1px solid #F3F3F3;
-    text-align: center;
     position: absolute;
   }
 
@@ -303,6 +300,10 @@
     padding-left: 20px;
     color: #707070;
     font-weight: 900;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 7vw;
   }
 
   .main_main {
@@ -336,10 +337,9 @@
     border: 1px solid var(--unnamed-color-d5d5d5);
     background: #FFFFFF 0% 0% no-repeat padding-box;
     border: 1px solid #D5D5D5;
-    height: 25px;
+    height: 30px;
     box-sizing: border-box;
     right: 4vw;
-    font-size: 12px;
   }
 
   .search>.button {
@@ -348,12 +348,11 @@
     border: 1px solid #D5D5D5;
     box-sizing: border-box;
     border-radius: 0;
-    height: 25px;
-    line-height: 25px;
+    height: 30px;
+    line-height: 30px;
     padding: 0;
     right: 0;
     width: 4vw;
-    font-size: 12px
   }
 
   .search>input:required:invalid {
@@ -374,7 +373,6 @@
     color: #FFFFFF;
     background: #52BF8A 0% 0% no-repeat padding-box;
     overflow: hidden;
-    font-size: 12px;
     font-weight: 900;
     box-sizing: border-box;
     border-left: .5px solid #FFFFFF;
@@ -395,13 +393,15 @@
     color: #707070;
     border-left: 0px;
     border-bottom: 1px solid #ccc;
-    font-size: 12px;
     font-weight: 400;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-
+  .mian_school:hover{
+    border: 2px solid #3dfff9;
+    cursor: pointer;
+  }
   .mian_fenye {
     width: 100%;
     background-color: #FFFFFF;

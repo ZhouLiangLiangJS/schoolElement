@@ -2,93 +2,63 @@
   <div>
     <div class="main">
       <div class="main_box">
-        <div class="title">
-          <div class="title_box">
-            <img src="../../static/icon5.jpg" class="center-y" alt="">
-            <span>75 名</span>
-          </div>
-          <div class="title_box center">
-            <img src="../../static/icon6.jpg" class="center-y" alt="">
-            <span>75 名</span>
-          </div>
-          <div class="title_box" style="right: 0;">
-            <img src="../../static/icon7.jpg" class="center-y" alt="">
-            <span>75 名</span>
-          </div>
-        </div>
         <div class="main_main">
           <div class="main_nav">
-            <span>教师一览表：</span>
-            <el-button class="button">添加教师信息</el-button>
-            <el-button class="button">导入教师信息</el-button>
-            <span style="font-weight: 400;">（下载导入模版）</span>
             <div class="search">
               <input type="text" class="center-y" placeholder="身份证、学号、手机号、姓名">
               <el-button class="button center-y">搜 索</el-button>
             </div>
           </div>
-          <div class="main_zhuye" >
-            <div class="main_zhuye_titile" style="
-              width: 10%;
-          ">
+          <div class="main_zhuye">
+            <div class="main_zhuye_titile" style="width: 8%;">
               姓 名
             </div>
-            <div class="main_zhuye_titile" style="
-              width: 8%;
-          ">
-              性别
+            <div class="main_zhuye_titile" style="width: 15%;">
+              学号
             </div>
-            <div class="main_zhuye_titile" style="
-              width: 15%;
-          ">
-              职工号
+            <div class="main_zhuye_titile" style="width: 5%;letter-spacing: 0px;">
+              金 额
             </div>
-            <div class="main_zhuye_titile" style="
-              width: 15%;
-          ">
-              电话号码
+            <div class="main_zhuye_titile" style="width: 20%;text-align: left;padding-left: 20px;">
+              项目
             </div>
-            <div class="main_zhuye_titile" style="
-              width: 15%;
-          ">
-              部门
+            <div class="main_zhuye_titile" style="width: 10%;">
+              时间
             </div>
-            <div class="main_zhuye_titile" style="
-                width: 37%;
-            ">
-              负责流程
+            <div class="main_zhuye_titile" style="width: 15%;">
+              联系手机
+            </div>
+            <div class="main_zhuye_titile" style="width: 10%;">
+              班级
+            </div>
+            <div class="main_zhuye_titile" style="width: 17%;">
+              缴费流水号
             </div>
           </div>
-          <div class="mian_school" v-for="i in 10" @click="handleRouter">
-            <div class="main_zhuye_titile" style="
-                width: 10%;
-            ">
-              聂辛庄
+          <div class="mian_school" v-for="i in 12"  @click="go('/JFXQ')">
+            <div class="main_zhuye_titile" style="width: 8%;">
+              彭冻革
             </div>
-            <div class="main_zhuye_titile" style="
-                width: 8%;
-            ">
-              男
+            <div class="main_zhuye_titile" style="width: 15%;">
+              308201809092700387
             </div>
-            <div class="main_zhuye_titile" style="
-                width: 15%;
-            ">
+            <div class="main_zhuye_titile" style="width: 5%;">
+              500000
+            </div>
+            <div class="main_zhuye_titile" style="width: 20%;text-align: left;padding-left: 20px;">
+              2020-2021学年春秋校服费
+            </div>
+            <div class="main_zhuye_titile" style="width: 10%;">
+              11-24 23:13
+            </div>
+            <div class="main_zhuye_titile" style="width: 15%;">
+              15227579113
+            </div>
+            <div class="main_zhuye_titile" style="width: 10%;">
+              民武2011班
+            </div>
+            <div class="main_zhuye_titile" style="width: 17%;">
               130921200212305612
-            </div>
-            <div class="main_zhuye_titile" style="
-                width: 15%;
-            ">
-              15139225822
-            </div>
-            <div class="main_zhuye_titile" style="
-                width: 15%;
-            ">
-              民族武术
-            </div>
-            <div class="main_zhuye_titile" style="
-                  width: 37%;
-              ">
-              招就处
             </div>
           </div>
           <div class="mian_fenye">
@@ -107,7 +77,6 @@
                 <el-button class="jup_btn" @tap="jumper=Gonum">Go</el-button>
               </div> -->
           </div>
-
         </div>
       </div>
     </div>
@@ -118,13 +87,13 @@
 <script>
   import Info from './info'
   export default {
+    components: {
+      Info
+    },
     data() {
       return {
         currentPage3: 5
       }
-    },
-    components: {
-      Info
     },
     methods: {
       handleSizeChange(val) {
@@ -134,7 +103,10 @@
         console.log(`当前页: ${val}`);
       },
       handleRouter() {
-        console.log(this.$router.push('/createTeacher'))
+        console.log(this.$router.push('xinjianxs'))
+      },
+      go(e) {
+        this.$router.push(e)
       }
     }
   }
@@ -241,9 +213,7 @@
   .button {
     border: 0px;
     font-weight: 900;
-    padding: 7px 20px;
-    border-radius: 0px;
-    box-shadow: 0px 3px 2px #00000029;
+    padding: 7px 30px;
   }
 
   .search {
@@ -270,7 +240,6 @@
     box-sizing: border-box;
     border-radius: 0;
     height: 30px;
-    box-shadow: 0px 0px 0px #00000029;
     line-height: 30px;
     padding: 0;
     right: 0;
@@ -284,7 +253,10 @@
   .main_zhuye {
     width: 100%;
     height: 5.5vh;
-    margin-top: 2vh;
+  }
+
+  .main_zhuye>.main_zhuye_titile {
+    letter-spacing: 9px;
   }
 
   .main_zhuye_titile {

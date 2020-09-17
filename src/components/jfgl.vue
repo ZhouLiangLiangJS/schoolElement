@@ -4,69 +4,70 @@
       <div class="main_box">
         <div class="title">
           <div class="title_box">
-            <img src="../../static/icon1.jpg" class="center-y" alt="">
-            <span>75 名</span>
+            <img src="../../static/icon9.jpg" class="center-y" alt="">
+            <span>4 个缴费项目</span>
           </div>
           <div class="title_box center">
-            <img src="../../static/icon3.jpg" class="center-y" alt="">
-            <span>75 名</span>
+            <img src="../../static/icon10.jpg" class="center-y" alt="">
+            <span>564 笔缴费</span>
           </div>
           <div class="title_box" style="right: 0;">
-            <img src="../../static/icon4.jpg" class="center-y" alt="">
-            <span>75 名</span>
+            <img src="../../static/icon11.jpg" class="center-y" alt="">
+            <span>856871.97 元</span>
           </div>
         </div>
-        <div class="title">
-          <div class="title_box">
-            <img src="../../static/icon1.jpg" class="center-y" alt="">
-            <span>75 名</span>
-          </div>
-          <div class="title_box center">
-            <img src="../../static/icon3.jpg" class="center-y" alt="">
-            <span>75 名</span>
-          </div>
-          <div class="title_box" style="right: 0;">
-            <img src="../../static/icon4.jpg" class="center-y" alt="">
-            <span>75 名</span>
+        <div class="title leftTitle">
+          <div class="title_box" v-for="i in 4">
+            <div class="title_title">2020-2021学年春秋校服费</div>
+            <div class="title_cen">
+              <div>
+                <div>学生处</div>
+                <div>共计：241笔</div>
+              </div>
+              <div style="width: 40%;">
+                <div>500/人</div>
+                <div>8596元</div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="main_main">
 
-          <div data-v-c1dcea9e="" data-v-957c9522="" class="main_zhuye">
-            <div data-v-c1dcea9e="" data-v-957c9522="" class="main_zhuye_titile" style="width: 15%;">
+          <div class="main_zhuye">
+            <div class="main_zhuye_titile" style="width: 15%;">
               姓 名
             </div>
-            <div data-v-c1dcea9e="" data-v-957c9522="" class="main_zhuye_titile" style="width: 25%;">
+            <div class="main_zhuye_titile" style="width: 25%;">
               学号
             </div>
-            <div data-v-c1dcea9e="" data-v-957c9522="" class="main_zhuye_titile" style="width: 10%;">
+            <div class="main_zhuye_titile" style="width: 10%;">
               金额
             </div>
-            <div data-v-c1dcea9e="" data-v-957c9522="" class="main_zhuye_titile" style="width: 35%;text-align: left;padding-left: 20px;">
+            <div class="main_zhuye_titile" style="width: 35%;text-align: left;padding-left: 20px;">
               项目
             </div>
-            <div data-v-c1dcea9e="" data-v-957c9522="" class="main_zhuye_titile" style="width: 15%;">
+            <div class="main_zhuye_titile" style="width: 15%;">
               时间
             </div>
           </div>
-          <div class="mian_school" v-for="i in 10">
-            <div data-v-c1dcea9e="" data-v-957c9522="" class="main_zhuye_titile" style="width: 15%;">
+          <div class="mian_school" v-for="i in 10" @click="go('/JFXQ')">
+            <div class="main_zhuye_titile" style="width: 15%;">
               彭冻革
             </div>
-            <div data-v-c1dcea9e="" data-v-957c9522="" class="main_zhuye_titile" style="width: 25%;">
+            <div class="main_zhuye_titile" style="width: 25%;">
               308201809092700387
             </div>
-            <div data-v-c1dcea9e="" data-v-957c9522="" class="main_zhuye_titile" style="width: 10%;">
+            <div class="main_zhuye_titile" style="width: 10%;">
               500
             </div>
-            <div data-v-c1dcea9e="" data-v-957c9522="" class="main_zhuye_titile" style="width: 35%;text-align: left;padding-left: 20px;">
+            <div class="main_zhuye_titile" style="width: 35%;text-align: left;padding-left: 20px;">
               2020-2021学年春秋校服费
             </div>
-            <div data-v-c1dcea9e="" data-v-957c9522="" class="main_zhuye_titile" style="width: 15%;">
+            <div class="main_zhuye_titile" style="width: 15%;">
               11-24 23:13
             </div>
           </div>
-          <div class="mian_fenye">
+          <div class="mian_fenye" @click="go('/AJF')">
             查看全部缴费
           </div>
         </div>
@@ -89,7 +90,10 @@
     },
     methods: {
       handleRouter() {
-        console.log(this.$router.push('xinjianxs'))
+        this.$router.push('xinjianxs')
+      },
+      go(e) {
+        this.$router.push(e)
       }
     }
   }
@@ -136,7 +140,6 @@
     background: #F5F5F5 0% 0% no-repeat padding-box;
     float: left;
     position: relative;
-    font-size: 14px;
   }
 
   .main_box {
@@ -158,11 +161,9 @@
     width: 19.32vw;
     float: left;
     height: 100%;
-    line-height: 13vh;
     background-color: #FFFFFF;
     box-shadow: 0px 3px 2px #00000029;
     border: 1px solid #F3F3F3;
-    text-align: center;
     position: absolute;
   }
 
@@ -177,6 +178,10 @@
     padding-left: 20px;
     color: #707070;
     font-weight: 900;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 7vw;
   }
 
   .main_main {
@@ -211,10 +216,9 @@
     border: 1px solid var(--unnamed-color-d5d5d5);
     background: #FFFFFF 0% 0% no-repeat padding-box;
     border: 1px solid #D5D5D5;
-    height: 25px;
+    height: 30px;
     box-sizing: border-box;
     right: 4vw;
-    font-size: 12px;
   }
 
   .search>.button {
@@ -223,12 +227,11 @@
     border: 1px solid #D5D5D5;
     box-sizing: border-box;
     border-radius: 0;
-    height: 25px;
-    line-height: 25px;
+    height: 30px;
+    line-height: 30px;
     padding: 0;
     right: 0;
     width: 4vw;
-    font-size: 12px
   }
 
   .search>input:required:invalid {
@@ -249,7 +252,6 @@
     color: #FFFFFF;
     background: #52BF8A 0% 0% no-repeat padding-box;
     overflow: hidden;
-    font-size: 12px;
     font-weight: 900;
     box-sizing: border-box;
     border-left: .5px solid #FFFFFF;
@@ -270,11 +272,15 @@
     color: #707070;
     border-left: 0px;
     border-bottom: 1px solid #ccc;
-    font-size: 12px;
     font-weight: 400;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+
+  .mian_school:hover {
+    border: 2px solid #3dfff9;
+    cursor: pointer;
   }
 
   .mian_fenye {
@@ -286,5 +292,47 @@
     letter-spacing: 9px;
     color: #707070;
     line-height: 6vh;
+    cursor: pointer;
+  }
+
+  .leftTitle {
+    width: 19.32vw;
+    height: 60vh;
+    position: absolute;
+    top: 20vh;
+  }
+
+  .leftTitle>.title_box {
+    position: relative;
+    float: none;
+    height: 13vh;
+    box-shadow: 0 0 0;
+    line-height: 20px;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    color: #707070;
+  }
+
+  .leftTitle>.title_box:nth-child(2n) {
+    margin: 15px auto;
+  }
+
+  .leftTitle>.title_box>.title_title {
+    text-align: left;
+    font-weight: 900;
+    height: 20%;
+  }
+
+  .leftTitle>.title_box>.title_cen {
+    width: 100%;
+    height: 80%;
+  }
+
+  .leftTitle>.title_box>.title_cen>div {
+    width: 60%;
+    float: left;
+    line-height: 3.5vh;
+    padding-top: 2vh;
+    text-align: left;
   }
 </style>

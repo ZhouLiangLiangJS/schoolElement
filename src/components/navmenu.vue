@@ -6,7 +6,7 @@
       <p>管理员</p>
     </div>
     <div class="navmenu-list">
-      <div @click="active=i" v-for="(item,i) in arrlist" :key="i" :style="active==i?'color: rgb(245, 222, 62);':''">{{item}}</div>
+      <div @click="go(i)" v-for="(item,i) in arrlist" :key="i" :style="active==i?'color: rgb(245, 222, 62);':''">{{item}}</div>
     </div>
   </div>
 </template>
@@ -25,43 +25,54 @@
       },
       handleClose(key, keyPath) {
         console.log(key, keyPath);
+      },
+      go(i) {
+        switch (i) {
+          case 0:
+            this.$router.push('/')
+            break;
+          case 1:
+            this.$router.push('teacher')
+            break;
+          case 2:
+            this.$router.push('jfgl')
+            break;
+          case 3:
+            this.$router.push('CGL')
+        }
+      },
+      watchPath(e) {
+        switch (e) {
+          case "Home":
+            this.active = 0
+            break;
+          case "Xjxs":
+            this.active = 0
+            break;
+          case "Teacher":
+            this.active = 1
+            break;
+          case "Join":
+            this.active = 1
+            break;
+          case "Jfgl":
+            this.active = 2
+            break;
+          case "AJF":
+            this.active = 2
+          case "JFXQ":
+            this.active = 2
+          case "CGL":
+            this.active = 3
+        }
       }
     },
     mounted() {
-      console.log(this.$route.name)
-      switch (this.$route.name) {
-        case "Home":
-          this.active = 0
-          break;
-        case "Xjxs":
-          this.active = 0
-          break;
-        case "Teacher":
-          this.active = 1
-          break;
-        case "Join":
-          this.active = 1
-          break;
-        case "Jfgl":
-          this.active = 2
-          break;
-      }
+      this.watchPath(this.$route.name)
     },
     watch: {
-      active(newData, oldData) {
-        if (oldData != null) {
-          switch (newData) {
-            case 0:
-              this.$router.push('/')
-              break;
-            case 1:
-              this.$router.push('teacher')
-              break;
-            case 2:
-              this.$router.push('jfgl')
-              break;
-          }
-        }
+      $route(to, from) {
+        this.watchPath(to.name)
       }
     }
   }
@@ -73,7 +84,6 @@
     background-color: #272E36;
     position: relative;
     color: #FFFFFF;
-    font-size: 14px;
     float: left;
   }
 

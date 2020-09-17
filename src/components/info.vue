@@ -12,6 +12,5 @@
     color: #D5D5D5;
     right: 5%;
     font-size: 10px;
-    font-weight: 900;
   }
 </style>
