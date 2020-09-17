@@ -6,7 +6,7 @@
       <p>管理员</p>
     </div>
     <div class="navmenu-list">
-      <div v-for="(item,i) in arrlist" :key="i" :style="active==i?'color: rgb(245, 222, 62);':''">{{item}}</div>
+      <div @click="active=i" v-for="(item,i) in arrlist" :key="i" :style="active==i?'color: rgb(245, 222, 62);':''">{{item}}</div>
     </div>
   </div>
 </template>
@@ -15,7 +15,8 @@
   export default {
     data() {
       return {
-        arrlist: ['新生一览', '教师列表', '缴费管理', '班级管理', '宿舍管理', '发送通知', '常见问题', '系统管理']
+        arrlist: ['新生一览', '教师列表', '缴费管理', '班级管理', '宿舍管理', '发送通知', '常见问题', '系统管理'],
+        active: null
       }
     },
     methods: {
@@ -26,7 +27,43 @@
         console.log(key, keyPath);
       }
     },
-    props: ["active"]
+    mounted() {
+      console.log(this.$route.name)
+      switch (this.$route.name) {
+        case "Home":
+          this.active = 0
+          break;
+        case "Xjxs":
+          this.active = 0
+          break;
+        case "Teacher":
+          this.active = 1
+          break;
+        case "Join":
+          this.active = 1
+          break;
+        case "Jfgl":
+          this.active = 2
+          break;
+      }
+    },
+    watch: {
+      active(newData, oldData) {
+        if (oldData != null) {
+          switch (newData) {
+            case 0:
+              this.$router.push('/')
+              break;
+            case 1:
+              this.$router.push('teacher')
+              break;
+            case 2:
+              this.$router.push('jfgl')
+              break;
+          }
+        }
+      }
+    }
   }
 </script>
 <style scoped>

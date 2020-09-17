@@ -4,22 +4,24 @@
       <div class="main_box">
         <div class="title">
           <div class="title_box">
-            <img src="../../static/icon1.jpg" class="center-y" alt="">
+            <img src="../../static/icon5.jpg" class="center-y" alt="">
             <span>75 名</span>
           </div>
           <div class="title_box center">
-            <img src="../../static/icon3.jpg" class="center-y" alt="">
+            <img src="../../static/icon6.jpg" class="center-y" alt="">
             <span>75 名</span>
           </div>
           <div class="title_box" style="right: 0;">
-            <img src="../../static/icon4.jpg" class="center-y" alt="">
+            <img src="../../static/icon7.jpg" class="center-y" alt="">
             <span>75 名</span>
           </div>
         </div>
         <div class="main_main">
           <div class="main_nav">
-            <span>报名新生一览表：</span>
-            <el-button class="button" @click="handleRouter">添加新生信息</el-button>
+            <span>教师一览表：</span>
+            <el-button class="button" @click="handleRouter">添加教师信息</el-button>
+            <el-button class="button" @click="handleRouter">导入教师信息</el-button>
+            <span style="font-weight: 400;">（下载导入模版）</span>
             <div class="search">
               <input type="text" class="center-y" placeholder="身份证、学号、手机号、姓名">
               <el-button class="button center-y">搜 索</el-button>
@@ -27,151 +29,67 @@
           </div>
           <div data-v-957c9522="" class="main_zhuye">
             <div data-v-957c9522="" class="main_zhuye_titile" style="
-              width: 8%;
+              width: 10%;
           ">
               姓 名
             </div>
             <div data-v-957c9522="" class="main_zhuye_titile" style="
-              width: 4%;
+              width: 8%;
           ">
               性别
             </div>
             <div data-v-957c9522="" class="main_zhuye_titile" style="
-              width: 4%;
+              width: 15%;
           ">
-              年龄
+              职工号
             </div>
             <div data-v-957c9522="" class="main_zhuye_titile" style="
-              width: 8%;
+              width: 15%;
           ">
-              中考分数
+              电话号码
             </div>
             <div data-v-957c9522="" class="main_zhuye_titile" style="
-              width: 9%;
+              width: 15%;
           ">
-              报考专业
+              部门
             </div>
             <div data-v-957c9522="" class="main_zhuye_titile" style="
-              width: 5%;
-          ">
-              生源
-            </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
-              width: 5%;
-          ">
-              学制
-            </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
-              width: 5%;
-          ">
-              家庭
-            </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
-              width: 8%;
-          ">
-              报名时间
-            </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
-              width: 8%;
-          ">
-              招生老师
-            </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
-              width: 36%;
-          ">
-              <div data-v-957c9522="">
-                审核
+                width: 37%;
+            ">
+                负责流程
               </div>
-              <div data-v-957c9522="">
-                审核
-              </div>
-              <div data-v-957c9522="">
-                审核
-              </div>
-              <div data-v-957c9522="">
-                审核
-              </div>
-              <div data-v-957c9522="">
-                审核
-              </div>
-              <div data-v-957c9522="">
-                审核
-              </div>
-            </div>
           </div>
           <div class="mian_school" v-for="i in 10">
             <div data-v-957c9522="" class="main_zhuye_titile" style="
+                width: 10%;
+            ">
+                姓 名
+              </div>
+              <div data-v-957c9522="" class="main_zhuye_titile" style="
                 width: 8%;
             ">
-              彭冻革
-            </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
-                width: 4%;
-            ">
-              男
-            </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
-                width: 4%;
-            ">
-              15
-            </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
-                width: 8%;
-            ">
-              148
-            </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
-                width: 9%;
-            ">
-              木叶
-            </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
-                width: 5%;
-            ">
-              应届生
-            </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
-                width: 5%;
-            ">
-              3+2
-            </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
-                width: 5%;
-            ">
-              农业
-            </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
-                width: 8%;
-            ">
-              11-24 23:12
-            </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
-                width: 8%;
-            ">
-              谢大海
-            </div>
-            <div data-v-957c9522="" class="main_zhuye_titile" style="
-                width: 36%;
-            ">
-              <div data-v-957c9522="">
-                ●
+                性别
               </div>
-              <div data-v-957c9522="">
-                ●
+              <div data-v-957c9522="" class="main_zhuye_titile" style="
+                width: 15%;
+            ">
+                职工号
               </div>
-              <div data-v-957c9522="">
-                ●
+              <div data-v-957c9522="" class="main_zhuye_titile" style="
+                width: 15%;
+            ">
+                电话号码
               </div>
-              <div data-v-957c9522="">
-                ○
+              <div data-v-957c9522="" class="main_zhuye_titile" style="
+                width: 15%;
+            ">
+                部门
               </div>
-              <div data-v-957c9522="">
-                ○
-              </div>
-              <div data-v-957c9522="">
-                ○
-              </div>
-            </div>
+              <div data-v-957c9522="" class="main_zhuye_titile" style="
+                  width: 37%;
+              ">
+                  负责流程
+                </div>
           </div>
           <div class="mian_fenye">
             <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="currentPage3"
@@ -189,6 +107,7 @@
                 <el-button class="jup_btn" @tap="jumper=Gonum">Go</el-button>
               </div> -->
           </div>
+
         </div>
       </div>
     </div>
@@ -199,13 +118,13 @@
 <script>
   import Info from './info'
   export default {
-    components:{
-      Info
-    },
     data() {
       return {
         currentPage3: 5
       }
+    },
+    components: {
+      Info
     },
     methods: {
       handleSizeChange(val) {
@@ -215,7 +134,7 @@
         console.log(`当前页: ${val}`);
       },
       handleRouter(){
-        console.log(this.$router.push('xinjianxs'))
+        console.log(this.$router.push('/createTeacher'))
       }
     }
   }
@@ -321,7 +240,9 @@
   .button {
     border: 0px;
     font-weight: 900;
-    padding: 7px 30px;
+    padding: 7px 20px;
+    border-radius: 0px;
+    box-shadow: 0px 3px 2px #00000029;
   }
 
   .search {
@@ -349,6 +270,7 @@
     box-sizing: border-box;
     border-radius: 0;
     height: 25px;
+    box-shadow: 0px 0px 0px #00000029;
     line-height: 25px;
     padding: 0;
     right: 0;
