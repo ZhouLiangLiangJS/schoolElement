@@ -258,9 +258,17 @@
             ">{{item.zsls}}</div>
               <div style="
                 width: 15%;
-            ">{{item.leix}}</div>
+            ">
+              <span class="xianze">{{item.leix}}
+              <i class="el-icon-arrow-down el-icon--right" style="color: #FFFFFF;"></i></span>
+              <div class="tanchu center-x">
+                <span>123123</span>
+              </div>
+            </div>
             </div>
           </div>
+
+          <div style="padding-left: 10px;color: #707070;">（只显示前5个搜索结果）</div>
         </div>
       </div>
     </div>
@@ -295,6 +303,15 @@
           id: 1
         },
         XSData:[
+          {
+            name:'彭冻革',
+            sex:'男',
+            sfz:'610822200905213230',
+            tel:'15227579113',
+            zy:'畜牧兽医',
+            zsls:'彭万里',
+            leix:'未分班'
+          },
           {
             name:'彭冻革',
             sex:'男',
@@ -393,7 +410,7 @@
 
   .mainshow_title {
     width: 100%;
-    overflow: hidden;
+    height: 50px;
     line-height: 50px;
   }
 
@@ -402,8 +419,14 @@
     text-align: center;
     box-sizing: border-box;
     border-left:1px solid #FFFFFF ;
+    position: relative;
   }
 
+  .tanchu{
+    border: 1px solid #D5D5D5;
+    width: 80px;
+    top: 38px;
+  }
   .showModel {
     box-shadow: 0px 3px 10px #00000029;
     width: 50vw;
@@ -413,10 +436,25 @@
   }
 
   .mainshow_main{
-    border-bottom:1px solid #707070 ;
+    border-bottom:1px solid #eee ;
     background-color: #FFFFFF;
     color: #707070;
   }
+
+  .mainshow_main .xianze:hover{
+    border: 1px solid #D5D5D5;
+    background-color: #FFFFFF;
+    display: inline-block;
+    line-height: 25px;
+    cursor: pointer;
+    width: 80px;
+  }
+
+  .mainshow_main .xianze:hover .el-icon--right{
+    color: #707070 !important;
+
+  }
+
 
   .showModel_top {
     overflow: hidden;
@@ -513,7 +551,7 @@
     background-color: #FFFFFF;
     line-height: 3vh;
     font-weight: 400;
-    border: 1px solid #707070;
+    border: 1px solid #d5d5d5;
 
   }
 
