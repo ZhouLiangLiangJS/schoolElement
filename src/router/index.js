@@ -9,6 +9,9 @@ import AJF  from '../components/allJF.vue'
 import JFXQ from '../components/JFXQ.vue'
 import CGL from '../components/classGL.vue'
 import SetTab from '../components/setTable.vue'
+import GLXQ from '../components/GLXQ.vue'
+import SSGL from '../components/shuSheGL.vue'
+import setSS from '../components/setShuShe.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -58,6 +61,20 @@ export default new Router({
       name: 'SetTab',
       component: SetTab
     },
-    
+    {
+      path: '/GLXQ',
+      name: 'GLXQ',
+      component: GLXQ
+    },
+    {
+      path: '/SSGL',
+      name: 'SSGL',
+      component: SSGL
+    },
+    {
+      path: '/setSS',
+      name: 'setSS',
+      component: setSS
+    }
   ]
 })

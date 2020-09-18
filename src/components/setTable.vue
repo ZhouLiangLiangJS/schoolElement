@@ -4,8 +4,8 @@
       <div class="main_box">
         <div class="main_main">
           <div class="title_nav">
-            <el-button class="back">返 回</el-button>
-            <div class="title_title">{{active.title}} <img class="center-y" src="../../static/icon12.jpg" alt=""></div>
+            <el-button class="back" @click="$router.go(-1)">返 回</el-button>
+            <div class="title_title">{{active.title}} <img class="center-y" @click="handleRouter('GLXQ')" src="../../static/icon12.jpg" alt="" ></div>
             <div class="fenpei">
               <div>
                 <span style="margin-right: 60px;" v-for="(item,i) in banMain.ban">{{item}}</span>
@@ -112,7 +112,7 @@
               </div>
             </div>
           </div>
-          <div class="mian_school" v-for="i in 10" @click="handleRouter">
+          <div class="mian_school" v-for="i in 10" @click="flag=true">
             <div class="main_zhuye_titile" style="
                 width: 8%;
             ">
@@ -204,7 +204,7 @@
           </div>
         </div>
       </div>
-      <div class="mask">
+      <div class="mask" v-if="flag">
         <div class="showModel center">
           <div class="showModel_top ">
             <div class="show_div">选择新生</div>
@@ -213,8 +213,8 @@
               <el-button class="button center-y">搜 索</el-button>
             </div>
             <div class="anniu">
-              <el-button style="margin-right: 30px;background-color:  #52BF8A;color: #FFFFFF;">保 存</el-button>
-              <el-button>取 消</el-button>
+              <el-button style="margin-right: 30px;background-color:  #52BF8A;color: #FFFFFF;" @click="flag=false">保 存</el-button>
+              <el-button @click="flag=false">取 消</el-button>
             </div>
           </div>
           <div class="mainshow">
@@ -259,10 +259,10 @@
               <div style="
                 width: 15%;
             ">
-              <span class="xianze">{{item.leix}}
+              <span class="xianze" @click="showtanchu(i)">{{item.leix}}
               <i class="el-icon-arrow-down el-icon--right" style="color: #FFFFFF;"></i></span>
-              <div class="tanchu center-x">
-                <span>123123</span>
+              <div class="tanchu center-x" v-if="activeTC==i">
+                <span v-for="k in serverData" @click="dianji(k)">{{k.title}}</span>
               </div>
             </div>
             </div>
@@ -284,6 +284,8 @@
     },
     data() {
       return {
+        activeTC:null,
+        flag:false,
         currentPage3: 5,
         serverData: [{
           title: '民武2001',
@@ -374,8 +376,19 @@
       handleCurrentChange(val) {
         console.log(`当前页: ${val}`);
       },
-      handleRouter() {
-        console.log(this.$router.push('xinjianxs'))
+      handleRouter(e) {
+        this.$router.push(e)
+      },
+      showtanchu(i){
+        if(this.activeTC==i){
+          this.activeTC=null
+        }else{
+          this.activeTC=i
+        }
+      },
+      dianji(i){
+        this.XSData[this.activeTC].leix=i.title;
+        this.activeTC=null
       }
     }
   }
@@ -402,7 +415,6 @@
   }
 
   .mainshow {
-    overflow: hidden;
     background-color: #52BF8A;
     color: #FFFFFF;
     margin-top: 10px;
@@ -424,8 +436,20 @@
 
   .tanchu{
     border: 1px solid #D5D5D5;
-    width: 80px;
+    width: 80%;
     top: 38px;
+    background-color: #FFFFFF;
+    z-index: 99;
+  }
+  .tanchu>span{
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    line-height: 30px;
+    cursor: pointer;
+  }
+  .tanchu>span:hover{
+    background-color:#eee;
   }
   .showModel {
     box-shadow: 0px 3px 10px #00000029;
@@ -440,6 +464,9 @@
     background-color: #FFFFFF;
     color: #707070;
   }
+  .xianze{
+    width: 80%;
+  }
 
   .mainshow_main .xianze:hover{
     border: 1px solid #D5D5D5;
@@ -447,7 +474,6 @@
     display: inline-block;
     line-height: 25px;
     cursor: pointer;
-    width: 80px;
   }
 
   .mainshow_main .xianze:hover .el-icon--right{
@@ -722,7 +748,7 @@
   }
 
   .mian_school:hover {
-    border: 2px solid #3dfff9;
+    border: 2px solid #EEEEEE;
     cursor: pointer;
   }
 

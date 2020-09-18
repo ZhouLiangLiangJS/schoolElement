@@ -21,6 +21,10 @@
     padding: 0;
   }
 
+  .title{
+    font-size: 16px;
+  }
+  
   #app {
     width: 100vw;
     height: 100vh;

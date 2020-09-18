@@ -38,7 +38,11 @@
             this.$router.push('jfgl')
             break;
           case 3:
-            this.$router.push('CGL')
+            this.$router.push('CGL');
+            break;
+          case 4:
+            this.$router.push('SSGL');
+            break;
         }
       },
       watchPath(e) {
@@ -60,11 +64,27 @@
             break;
           case "AJF":
             this.active = 2
+            break;
           case "JFXQ":
             this.active = 2
+            break;
           case "CGL":
             this.active = 3
+            break;
+          case "SetTab":
+            this.active = 3
+            break;
+          case "GLXQ":
+            this.active = 3
+            break;
+          case "SSGL":
+            this.active = 4
+            break;
+          case 'setSS':
+            this.active = 4
+            break;
         }
+        console.log(this.active)
       }
     },
     mounted() {
@@ -72,6 +92,7 @@
     },
     watch: {
       $route(to, from) {
+        console.log(to.name)
         this.watchPath(to.name)
       }
     }

@@ -322,7 +322,7 @@
   }
 
   .mian_school:hover {
-    border: 2px solid #3dfff9;
+    border: 2px solid #eee;
     cursor: pointer;
   }
 

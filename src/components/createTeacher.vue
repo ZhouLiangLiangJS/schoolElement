@@ -179,12 +179,12 @@
     width: 80px;
     text-align: right;
     float: left;
-    line-height: 30px;
+    line-height: 40px;
   }
 
   .main_cen_right {
     float: left;
-    line-height: 30px;
+    line-height: 40px;
   }
 
   .main_cen_right>div {
