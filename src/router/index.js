@@ -12,6 +12,8 @@ import SetTab from '../components/setTable.vue'
 import GLXQ from '../components/GLXQ.vue'
 import SSGL from '../components/shuSheGL.vue'
 import setSS from '../components/setShuShe.vue'
+import SSXQ from '../components/shuSheXQ.vue'
+
 Vue.use(Router)
 
 export default new Router({
@@ -75,6 +77,11 @@ export default new Router({
       path: '/setSS',
       name: 'setSS',
       component: setSS
+    },
+    {
+      path: '/SSXQ',
+      name: 'SSXQ',
+      component: SSXQ
     }
   ]
 })

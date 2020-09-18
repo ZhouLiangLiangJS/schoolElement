@@ -83,6 +83,9 @@
           case 'setSS':
             this.active = 4
             break;
+          case 'SSXQ':
+            this.active = 4
+            break;
         }
         console.log(this.active)
       }
