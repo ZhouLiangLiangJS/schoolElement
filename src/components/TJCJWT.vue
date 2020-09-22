@@ -104,7 +104,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   .main {
     padding: 5%;
   }

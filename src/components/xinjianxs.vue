@@ -14,10 +14,14 @@
             <div v-for="(item,i) in arr1" :key="i">{{item}}</div>
           </div>
           <div class="main_main_left" style="text-align: left;font-weight: 400;width: 35%;">
-            <div v-for="(item,i) in arr2" :key="i">{{item}}</div>
+            <div style="cursor: pointer;" v-for="(item,i) in arr2" :key="i" @mousemove="mouse=i" @mouseleave="mouse=null">
+              <input type="text" v-model="arr2[i]" v-show="active==i">
+              <span v-show='active!=i'>{{item}}</span>
+              <span v-show="mouse==i" @click="active==i?active=null:active=i"><img style="width: 15px;" src="../../static/icon12.jpg" alt=""></span>
+            </div>
           </div>
           <div class="main_main_left" style="float: right;text-align: left;margin-right: 5%;width: 40%;">
-            <div class="myfor" v-for="(item,i) in arr3" :key="i">
+            <div class="myfor" v-for="(item,i) in arr3" :key="i" >
               <div class="title">{{item.title}}</div>
               <div style="font-weight: 400;line-height: 40px;" v-for="(child,n) in item.arr"  :key="n" >{{child}}</div>
             </div>
@@ -54,6 +58,8 @@
     data() {
       return {
         flag:false,
+        mouse:null,
+        active:null,
         arr1: ["姓名： ", " 申报专业： ", "身份证号： ", "学号： ", "性别： ", "民族： ", "个人联系电话： ", "QQ： ", "政治面貌： ", "文化程度： ", "身高： ",
           "体重： ", "籍贯： ",
           "毕业学校： ", "毕业时间： ", "入学分数： ", "现居住地址： ", "第一监护人电话： ", "第二监护人电话： ", "第三监护人电话： ", "家庭住址： ", "家庭类型： ",

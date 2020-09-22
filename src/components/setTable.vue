@@ -5,7 +5,7 @@
         <div class="main_main">
           <div class="title_nav">
             <el-button class="back" @click="$router.go(-1)">返 回</el-button>
-            <div class="title_title">{{active.title}} <img class="center-y" @click="handleRouter('GLXQ')" src="../../static/icon12.jpg" alt="" ></div>
+            <div class="title_title">{{active.title}} <img class="center-y"  src="../../static/icon12.jpg" alt="" ></div>
             <div class="fenpei">
               <div>
                 <span style="margin-right: 60px;" v-for="(item,i) in banMain.ban" :key="i">{{item}}</span>

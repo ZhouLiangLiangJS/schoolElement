@@ -24,7 +24,7 @@
             <span>{{item.title}}({{item.num}})</span>
             <em class="center-x"></em>
           </div>
-          <div class="cen_fenban" style="cursor: pointer;" @click="addItem()">
+          <div class="cen_fenban" style="cursor: pointer;" @click="$router.push('GLXQ')">
             <span>+</span>
             <em class="center-x"></em>
           </div>
@@ -36,7 +36,7 @@
               <span>{{child.title}}({{child.num}})</span>
               <em class="center-y"></em>
             </div>
-            <div style="cursor: pointer;" class="cen_fenban_child_box" @click="addChild(i)">
+            <div style="cursor: pointer;" class="cen_fenban_child_box" @click="$router.push('GLXQ')">
               <span>+</span>
               <em class="center-y"></em>
             </div>

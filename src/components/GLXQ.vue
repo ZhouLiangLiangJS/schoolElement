@@ -28,8 +28,10 @@
                 </el-dropdown>
               </div>
               <div v-for="(item,i) in serverData.xiazhi">
-                <span style="margin-right: 30px;">{{item.title}}</span>
-                <span>专业代码{{item.daiMa}}</span>
+                <span class="xzyy">{{item.title}}</span>
+                <span class="xzyy">专业代码{{item.daiMa}}</span>
+                <span>招生名额</span>
+                <input type="text" class="xzyy_inp">
                 <img @click="serverData.xiazhi.splice(i,1)" src="../../static/icon8.jpg" class="center-y" alt="">
               </div>
               <span class="dx" @click="open(1)">+</span>
@@ -129,6 +131,17 @@
 
   .active {
     background-color: #909090;
+  }
+
+  .xzyy{
+    margin-right: 30px;
+  }
+
+  .xzyy_inp{
+    width: 30px;
+    border: 0;
+    border-bottom: 1px solid #707070;
+    background-color: rgba(0,0,0,0);
   }
 
   .shenhe_tab em {

@@ -129,7 +129,7 @@
   }
 </script>
 
-<style scoped="scoped">
+<style scoped>
   .main{
     padding: 2.6% 5%;
     color: #707070;
@@ -191,7 +191,7 @@
   .main_right>div{
     width: 100%;
     box-sizing: border-box;
-    padding:20px 30px;
+    padding:15px 30px;
     background-color: #FFFFFF;
     margin-bottom: 3.33333%;
   }

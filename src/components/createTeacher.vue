@@ -11,7 +11,7 @@
         <div class="main_main">
           <div class="title">{{serverData.title}}</div>
           <div class="main_cen">
-            <div class="main_cen_left">
+            <!--<div class="main_cen_left">
               <div>性别：</div>
               <div>工号：</div>
               <div>手机号：</div>
@@ -36,6 +36,38 @@
                 <img v-if="serverData.liuC.length!=0" @click="serverData.liuC=''" src="../../static/icon8.jpg" class="center-y"
                   alt="">
               </div>
+            </div> -->
+            <div class="main_list">
+              <div class="main_list_left">性别：</div>
+              <div class="main_list_right">{{serverData.sex}}</div>
+            </div>
+            <div class="main_list">
+              <div class="main_list_left">工号：</div>
+              <div class="main_list_right">{{serverData.gongHao}}</div>
+            </div>
+            <div class="main_list">
+              <div class="main_list_left">手机号：</div>
+              <div class="main_list_right">{{serverData.tel}}</div>
+            </div>
+            <div class="main_list">
+              <div class="main_list_left">部门：</div>
+              <div class="main_list_right" v-for="(item,i) in serverData.buMen" :key='i'>
+                <span>{{item}}</span>
+                <img  @click="serverData.buMen.splice(i,1)" src="../../static/icon8.jpg" class="center-y">
+              </div>
+              <div class="main_list_right dx" @click="open(1)">+</div>
+            </div>
+            <div class="main_list">
+              <div class="main_list_left">密码：</div>
+              <div class="main_list_right">{{serverData.passWord}}</div>
+            </div>
+            <div class="main_list">
+              <div class="main_list_left">负责流程：</div>
+              <div class="main_list_right" v-for="(item,i) in serverData.liuC" :key='i'>
+                <span>{{item}}</span>
+                <img  @click="serverData.liuC.splice(i,1)" src="../../static/icon8.jpg" class="center-y">
+              </div>
+              <div class="main_list_right dx" @click="open(0)">+</div>
             </div>
           </div>
         </div>
@@ -55,9 +87,9 @@
           sex:"男",
           gongHao: "130921200212305612",
           tel: "15139225822",
-          buMen: "民族武术",
+          buMen: ["民族武术"],
           passWord: "********",
-          liuC: "招就处"
+          liuC: ["招就处"]
         }
       }
     },
@@ -81,9 +113,9 @@
             message: '修改内容为：'+value
           });
           if(e){
-            this.serverData.buMen=value
+            this.serverData.buMen.push(value)
           }else{
-            this.serverData.liuC=value
+            this.serverData.liuC.push(value)
           }
         }).catch(() => {
           this.$message({
@@ -99,6 +131,30 @@
 <style scoped>
   .main {
     overflow-y: scroll;
+  }
+
+  .main_list{
+    width: 100%;
+    line-height: 40px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .main_list_left{
+    width: 80px;
+    text-align: right;
+    position: absolute;
+    float: left;
+    height: 100%;
+  }
+  .main_list_right{
+    width: calc(100% - 80px);
+    margin-left: 80px;
+    position: relative;
+  }
+  .main_list_right>.center-y{
+    height: 20px;
+    padding-left: 10px;
   }
 
   .active {
@@ -198,9 +254,10 @@
     cursor: pointer;
   }
 
-  .main_cen_right .dx {
+  .dx {
     border: 1px dashed #707070;
     padding: 0 20px;
     cursor: pointer;
+    display: inline;
   }
 </style>

@@ -239,7 +239,7 @@
   }
 </script>
 
-<style scoped="scoped">
+<style scoped>
   .main{
     padding: 5%;
     color: #707070;

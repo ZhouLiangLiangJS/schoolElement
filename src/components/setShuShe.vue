@@ -8,7 +8,7 @@
     ref='sml'
     @canMif="canMif"
     ></ShowModel>
-    <div class="navGo">
+    <div class="navGo" >
       <el-button @click="$router.go(-1)"> 返 回</el-button>
       <el-button style="background-color: #D5D5D5;float: right;" @click="delBL()"> 删 除 本 楼</el-button>
     </div>
@@ -20,21 +20,22 @@
       </div>
       <div class="main_cen_one main_cen_two">
         <div class="two_cen center-y">
-          <el-button v-for="(item,i) in serverData.arr" :key="i" class="two_button" @click='active0=i'>
+          <el-button v-for="(item,i) in serverData.arr" :key="i" class="two_button" @click.stop='active0==i?active0=null:active0=i'>
             <div class="center-y leftXian"></div>
             <span>{{item.title}}</span>
             <em class="center-y" v-if="active0==i"></em>
             <div class="roomBox center-y" v-if="active0==i">
               <div class="center-y leftYxian" :style="'height:'+(item.arr.length-1)*60+'px'"></div>
-              <el-button class="three_button" v-for="(child,n) in item.arr" :key="n" @click="active1=n">
+              <el-button class="three_button" v-for="(child,n) in item.arr" :key="n" @click.stop="active1==n?active1=null:active1=n">
                 <div class="center-y leftXian"></div>
                 <span>{{child.title}}</span>
                 <em class="center-y" v-if="active1==n"></em>
-                <div class="roomBox center-y" style="width: 25vw;" v-if="active1==n">
+                <div class="roomBox center-y" style="width: 25vw;" v-if="active1==n" >
                   <div class="center-y leftYxian" :style="'height:'+(child.arr.length-1)*60+'px'"></div>
-                  <el-button class="three_button" v-for="(sun,o) in child.arr" :key="o">
+                  <el-button class="three_button" v-for="(sun,o) in child.arr" :key="o"  @click.stop="hoverImg=o">
                     <div class="center-y leftXian"></div>
                     <span>{{sun.title}}</span>
+                    <img v-if="hoverImg==o" @click="child.arr.splice(o,1)" src="../../static/icon8.jpg" alt="" class="center-y">
                   </el-button>
                 </div>
               </el-button>
@@ -118,7 +119,8 @@
           ]
         },
         active0:null,
-        active1:null
+        active1:null,
+        hoverImg:0
       }
     },
     components:{
@@ -130,6 +132,9 @@
         this.$refs.sml.open()
       },
       canMif(e){
+        console.log(e)
+      },
+      move(e){
         console.log(e)
       }
     },
@@ -232,6 +237,11 @@
   .roomBox>button{
     width: 60%;
     display: block;
+    position: relative;
+  }
+  .roomBox img{
+    height: 50%;
+    right: -40px;
   }
   .three_button{
     margin: 0 auto;
