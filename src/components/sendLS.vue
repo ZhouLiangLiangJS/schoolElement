@@ -1,81 +1,41 @@
 <template>
   <div>
     <div class="main">
+      <el-button class="send_back" @click="$router.go(-1)">返 回</el-button>
       <div class="main_box">
         <div class="main_main">
-          <div class="main_nav">
-            <div class="search">
-              <input type="text" class="center-y" placeholder="身份证、学号、手机号、姓名">
-              <el-button class="button center-y">搜 索</el-button>
-            </div>
-          </div>
           <div class="main_zhuye">
-            <div class="main_zhuye_titile" style="width: 8%;">
-              姓 名
+            <div class="main_zhuye_titile" style="width: 15%;">
+              时 间
+            </div>
+            <div class="main_zhuye_titile" style="width: 55%;">
+              通知内容
             </div>
             <div class="main_zhuye_titile" style="width: 15%;">
-              学号
-            </div>
-            <div class="main_zhuye_titile" style="width: 5%;letter-spacing: 0px;">
-              金 额
-            </div>
-            <div class="main_zhuye_titile" style="width: 20%;text-align: left;padding-left: 20px;">
-              项目
-            </div>
-            <div class="main_zhuye_titile" style="width: 10%;">
-              时间
+              通知对象
             </div>
             <div class="main_zhuye_titile" style="width: 15%;">
-              联系手机
-            </div>
-            <div class="main_zhuye_titile" style="width: 10%;">
-              班级
-            </div>
-            <div class="main_zhuye_titile" style="width: 17%;">
-              缴费流水号
+              附加选项
             </div>
           </div>
-          <div class="mian_school" v-for="i in 12"  @click="go('/JFXQ')" :key="i">
-            <div class="main_zhuye_titile" style="width: 8%;">
-              彭冻革
-            </div>
+          <div class="mian_school" v-for="i in 12"  @click="$router.push('TZXQ')" :key="i">
             <div class="main_zhuye_titile" style="width: 15%;">
-              308201809092700387
-            </div>
-            <div class="main_zhuye_titile" style="width: 5%;">
-              500000
-            </div>
-            <div class="main_zhuye_titile" style="width: 20%;text-align: left;padding-left: 20px;">
-              2020-2021学年春秋校服费
-            </div>
-            <div class="main_zhuye_titile" style="width: 10%;">
               11-24 23:13
             </div>
+            <div class="main_zhuye_titile" style="width: 55%;">
+              学校报名缴费截止时间为2020年9月15日，请还没完成报名的同学尽……
+            </div>
             <div class="main_zhuye_titile" style="width: 15%;">
-              15227579113
+              全部学生
             </div>
-            <div class="main_zhuye_titile" style="width: 10%;">
-              民武2011班
-            </div>
-            <div class="main_zhuye_titile" style="width: 17%;">
-              130921200212305612
+            <div class="main_zhuye_titile" style="width: 15%;">
+              全部
             </div>
           </div>
           <div class="mian_fenye">
             <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="currentPage3"
               :page-size="100" layout="prev, pager, next, jumper" :total="1000" class="center-y">
             </el-pagination>
-            <!-- <el-pagination
-                layout="prev, pager, next"
-                :total="500"
-                class="center-y"
-                :jumper="jumper"
-                >
-              </el-pagination>
-              <div class="jup center-y">
-                <input type="number" v-model="Gonum">
-                <el-button class="jup_btn" @tap="jumper=Gonum">Go</el-button>
-              </div> -->
           </div>
         </div>
       </div>
@@ -146,6 +106,19 @@
     height: 20px;
     border-radius: 0px;
   }
+  .send_back{
+    box-shadow: 0px 3px 2px #00000029;
+    width: 120px;
+    border: 0px;
+    margin: 0 0 30px;
+    border-radius: 0px;
+    color: #707070;
+    font-weight: 900;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    box-sizing: border-box;
+  }
 
   .main {
     width: 84.91vw;
@@ -156,12 +129,9 @@
   }
 
   .main_box {
-    width: 90%;
-    height: 90%;
+    width: 65%;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    right: 10%;
   }
 
   .title {
@@ -201,7 +171,7 @@
     width: 100%;
     height: 77vh;
     box-sizing: border-box;
-    padding-top: 5vh;
+    padding-top: 10vh;
   }
 
   .main_nav {
@@ -252,7 +222,7 @@
 
   .main_zhuye {
     width: 100%;
-    height: 5.5vh;
+    height: 6vh;
   }
 
   .main_zhuye>.main_zhuye_titile {
@@ -262,7 +232,7 @@
   .main_zhuye_titile {
     height: 100%;
     text-align: center;
-    line-height: 5.5vh;
+    line-height: 6vh;
     float: left;
     color: #FFFFFF;
     background: #52BF8A 0% 0% no-repeat padding-box;

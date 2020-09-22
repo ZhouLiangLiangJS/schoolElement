@@ -1,10 +1,17 @@
 <template>
   <div class="main">
-
+    <ShowModel
+    :title="'重要提示：'"
+    :html="`您正在执行“一键分班”的操作，+将会清空当前所有学生已有的分班信息、住宿信 息、物品发放信息+，为确保安全，请输入登录密码确认操作：`"
+    quXiao="取 消 返 回"
+    queRen="确 认 分 班"
+    ref='sml'
+    @canMif="canMif"
+    ></ShowModel>
     <div class="main_cen center">
       <div class="main_nav">
         <span>当前新生分班方式：自动分班</span>
-        <el-button>对全部新生重新一键分班</el-button>
+        <el-button @click="open">对全部新生重新一键分班</el-button>
       </div>
       <div class="cen_lei">
         <div class="cen_button_A">
@@ -13,7 +20,7 @@
         </div>
         <div class="cen_xian" :style="'width:'+(serverData.ArrC.length)*200+'px;'"></div>
         <div class="cen_fenban_box" :style="'width:'+(serverData.ArrC.length+1)*200+'px;'">
-          <div class="cen_fenban" v-for="(item,i) in serverData.ArrC">
+          <div class="cen_fenban" v-for="(item,i) in serverData.ArrC" :key="i">
             <span>{{item.title}}({{item.num}})</span>
             <em class="center-x"></em>
           </div>
@@ -23,9 +30,9 @@
           </div>
         </div>
         <div style="overflow: hidden;">
-          <div class="cen_fenban_child" v-for="(item,i) in serverData.ArrC">
+          <div class="cen_fenban_child" v-for="(item,i) in serverData.ArrC" :key="i">
             <div class="cen_fenban_child_leftX" :style="'height:'+(((item.child.length+1)*60)-20)+'px;'"></div>
-            <div class="cen_fenban_child_box" v-for="(child,n) in item.child" @click="go('/SetTab')">
+            <div class="cen_fenban_child_box" v-for="(child,n) in item.child" :key="n" @click="go('/SetTab')">
               <span>{{child.title}}({{child.num}})</span>
               <em class="center-y"></em>
             </div>
@@ -42,10 +49,12 @@
 </template>
 
 <script>
-  import Info from './info'
+  import Info from './info';
+  import ShowModel from './showModel.vue';
   export default {
     components: {
-      Info
+      Info,
+      ShowModel
     },
     data() {
       return {
@@ -150,6 +159,12 @@
       }
     },
     methods: {
+      canMif(e){
+        console.log(e)
+      },
+      open(){
+        this.$refs.sml.open()
+      },
       back() {
 
       },

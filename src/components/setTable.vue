@@ -8,16 +8,16 @@
             <div class="title_title">{{active.title}} <img class="center-y" @click="handleRouter('GLXQ')" src="../../static/icon12.jpg" alt="" ></div>
             <div class="fenpei">
               <div>
-                <span style="margin-right: 60px;" v-for="(item,i) in banMain.ban">{{item}}</span>
+                <span style="margin-right: 60px;" v-for="(item,i) in banMain.ban" :key="i">{{item}}</span>
               </div>
               <div style="position: relative;">
                 <div style="float: left;">
                   宿舍房间号：
                 </div>
                 <div style="float: left;position: absolute;left: 100px;">
-                  <div>（男）<span v-for="(item,i) in banMain.room.sex1">{{item}}{{(i+1)==banMain.room.sex1.length?'':'，'}}
+                  <div>（男）<span v-for="(item,i) in banMain.room.sex1" :key="i">{{item}}{{(i+1)==banMain.room.sex1.length?'':'，'}}
                     </span></div>
-                  <div>（女）<span v-for="(item,i) in banMain.room.sex0">{{item}}{{(i+1)==banMain.room.sex0.length?'':'，'}}
+                  <div>（女）<span v-for="(item,i) in banMain.room.sex0" :key="i">{{item}}{{(i+1)==banMain.room.sex0.length?'':'，'}}
                     </span></div>
                 </div>
               </div>
@@ -30,7 +30,7 @@
                 {{active.title}}<i class="el-icon-arrow-down el-icon--right center-y"></i>
               </span>
               <el-dropdown-menu slot="dropdown" style="width:120px;">
-                <el-dropdown-item :command="i" v-for="(item,i) in serverData" :disabled="item.id==active.id">{{item.title}}</el-dropdown-item>
+                <el-dropdown-item :command="i" v-for="(item,i) in serverData" :key="i" :disabled="item.id==active.id">{{item.title}}</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
             <div class="search">
@@ -112,7 +112,7 @@
               </div>
             </div>
           </div>
-          <div class="mian_school" v-for="i in 10" @click="flag=true">
+          <div class="mian_school" v-for="i in 10" :key="i" @click="flag=true">
             <div class="main_zhuye_titile" style="
                 width: 8%;
             ">
@@ -239,7 +239,7 @@
                 width: 15%;
             ">分班情况</div>
             </div>
-            <div class="mainshow_title mainshow_main" v-for="(item,i) in XSData">
+            <div class="mainshow_title mainshow_main" v-for="(item,i) in XSData" :key="i">
               <div style="width: 10%;">{{item.name}}</div>
               <div style="
                 width: 10%;
@@ -262,7 +262,7 @@
               <span class="xianze" @click="showtanchu(i)">{{item.leix}}
               <i class="el-icon-arrow-down el-icon--right" style="color: #FFFFFF;"></i></span>
               <div class="tanchu center-x" v-if="activeTC==i">
-                <span v-for="k in serverData" @click="dianji(k)">{{k.title}}</span>
+                <span v-for="(k,c) in serverData" @click="dianji(k)" :key="c">{{k.title}}</span>
               </div>
             </div>
             </div>

@@ -17,7 +17,7 @@
           </div>
         </div>
         <div class="title leftTitle">
-          <div class="title_box" v-for="i in 4">
+          <div class="title_box" v-for="i in 4" :key="i">
             <div class="title_title">2020-2021学年春秋校服费</div>
             <div class="title_cen">
               <div>
@@ -50,7 +50,7 @@
               时间
             </div>
           </div>
-          <div class="mian_school" v-for="i in 10" @click="go('/JFXQ')">
+          <div class="mian_school" v-for="i in 10" :key="i" @click="go('/JFXQ')">
             <div class="main_zhuye_titile" style="width: 15%;">
               彭冻革
             </div>

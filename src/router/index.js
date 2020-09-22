@@ -13,6 +13,13 @@ import GLXQ from '../components/GLXQ.vue'
 import SSGL from '../components/shuSheGL.vue'
 import setSS from '../components/setShuShe.vue'
 import SSXQ from '../components/shuSheXQ.vue'
+import CreateSS from '../components/createShuShe.vue'
+import sedTZ from '../components/sedTongZhi.vue'
+import sendLS from '../components/sendLS.vue'
+import TZXQ from '../components/TZXQ.vue'
+import CJWT from '../components/CJWT.vue'
+import TJCJWT from '../components/TJCJWT.vue'
+import XTGL from '../components/xitongGL.vue'
 
 Vue.use(Router)
 
@@ -82,6 +89,41 @@ export default new Router({
       path: '/SSXQ',
       name: 'SSXQ',
       component: SSXQ
+    },
+    {
+      path: '/CreateSS',
+      name: 'CreateSS',
+      component: CreateSS
+    },
+    {
+      path: '/sedTZ',
+      name: 'sedTZ',
+      component: sedTZ
+    },
+    {
+      path: '/sendLS',
+      name: 'sendLS',
+      component: sendLS
+    },
+    {
+      path: '/TZXQ',
+      name: 'TZXQ',
+      component: TZXQ
+    },
+    {
+      path: '/CJWT',
+      name: 'CJWT',
+      component: CJWT
+    },
+    {
+      path: '/TJCJWT',
+      name: 'TJCJWT',
+      component: TJCJWT
+    },
+    {
+      path: '/XTGL',
+      name: 'XTGL',
+      component: XTGL
     }
   ]
 })

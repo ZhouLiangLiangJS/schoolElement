@@ -59,7 +59,7 @@
               负责流程
             </div>
           </div>
-          <div class="mian_school" v-for="i in 10" @click="handleRouter">
+          <div class="mian_school" v-for="i in 10" :key="i" @click="handleRouter">
             <div class="main_zhuye_titile" style="
                 width: 10%;
             ">

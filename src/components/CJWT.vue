@@ -3,79 +3,41 @@
     <div class="main">
       <div class="main_box">
         <div class="main_main">
+          <div class="title_main">常见问题</div>
           <div class="main_nav">
+            <el-button class="button" @click="$router.push('TJCJWT')">添加常见问题</el-button>
             <div class="search">
-              <input type="text" class="center-y" placeholder="身份证、学号、手机号、姓名">
+              <input type="text" class="center-y" placeholder="全文检索">
               <el-button class="button center-y">搜 索</el-button>
             </div>
           </div>
           <div class="main_zhuye">
-            <div class="main_zhuye_titile" style="width: 8%;">
-              姓 名
+            <div class="main_zhuye_titile" style="width: 70%;text-align: left;padding-left: 60px;">
+              常见问题标题
             </div>
             <div class="main_zhuye_titile" style="width: 15%;">
-              学号
-            </div>
-            <div class="main_zhuye_titile" style="width: 5%;letter-spacing: 0px;">
-              金 额
-            </div>
-            <div class="main_zhuye_titile" style="width: 20%;text-align: left;padding-left: 20px;">
-              项目
-            </div>
-            <div class="main_zhuye_titile" style="width: 10%;">
-              时间
+              发布时间
             </div>
             <div class="main_zhuye_titile" style="width: 15%;">
-              联系手机
-            </div>
-            <div class="main_zhuye_titile" style="width: 10%;">
-              班级
-            </div>
-            <div class="main_zhuye_titile" style="width: 17%;">
-              缴费流水号
+              操 作
             </div>
           </div>
-          <div class="mian_school" v-for="i in 12"  @click="go('/JFXQ')" :key="i">
-            <div class="main_zhuye_titile" style="width: 8%;">
-              彭冻革
+          <div class="mian_school" v-for="i in 12"   :key="i">
+            <div class="main_zhuye_titile" style="width: 70%;text-align: left;padding-left: 60px;">
+              如何坐车或打车到学校？
             </div>
             <div class="main_zhuye_titile" style="width: 15%;">
-              308201809092700387
-            </div>
-            <div class="main_zhuye_titile" style="width: 5%;">
-              500000
-            </div>
-            <div class="main_zhuye_titile" style="width: 20%;text-align: left;padding-left: 20px;">
-              2020-2021学年春秋校服费
-            </div>
-            <div class="main_zhuye_titile" style="width: 10%;">
               11-24 23:13
             </div>
             <div class="main_zhuye_titile" style="width: 15%;">
-              15227579113
-            </div>
-            <div class="main_zhuye_titile" style="width: 10%;">
-              民武2011班
-            </div>
-            <div class="main_zhuye_titile" style="width: 17%;">
-              130921200212305612
+              <span style="margin-right: 10px;" @click="$router.push('TJCJWT')">编辑</span>
+              <span style="margin-left: 10px;">删除</span>
             </div>
           </div>
           <div class="mian_fenye">
             <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="currentPage3"
               :page-size="100" layout="prev, pager, next, jumper" :total="1000" class="center-y">
             </el-pagination>
-            <!-- <el-pagination
-                layout="prev, pager, next"
-                :total="500"
-                class="center-y"
-                :jumper="jumper"
-                >
-              </el-pagination>
-              <div class="jup center-y">
-                <input type="number" v-model="Gonum">
-                <el-button class="jup_btn" @tap="jumper=Gonum">Go</el-button>
-              </div> -->
           </div>
         </div>
       </div>
@@ -196,12 +158,18 @@
     transform: translateY(-50%);
     left: 7vw;
   }
+  .title_main{
+    color: #707070;
+    line-height: 50px;
+    font-weight: 900;
+    font-size: 16px;
+  }
 
   .main_main {
     width: 100%;
     height: 77vh;
     box-sizing: border-box;
-    padding-top: 5vh;
+    padding-top: 2vh;
   }
 
   .main_nav {
@@ -255,8 +223,8 @@
     height: 5.5vh;
   }
 
-  .main_zhuye>.main_zhuye_titile {
-    letter-spacing: 9px;
+  .main_zhuye_titile>span:hover {
+    color: #52BF8A;
   }
 
   .main_zhuye_titile {

@@ -43,6 +43,15 @@
           case 4:
             this.$router.push('SSGL');
             break;
+          case 5:
+            this.$router.push('sedTZ');
+            break;
+          case 6:
+            this.$router.push('CJWT');
+            break;
+          case 7:
+            this.$router.push('XTGL');
+            break;
         }
       },
       watchPath(e) {
@@ -85,6 +94,27 @@
             break;
           case 'SSXQ':
             this.active = 4
+            break;
+          case 'CreateSS':
+            this.active = 4
+            break;
+          case 'sedTZ':
+            this.active = 5
+            break;
+          case 'sendLS':
+            this.active = 5
+            break;
+          case 'TZXQ':
+            this.active = 5
+            break;
+          case 'CJWT':
+            this.active = 6
+            break;
+          case 'TJCJWT':
+            this.active = 6
+            break;
+          case 'XTGL':
+            this.active = 7
             break;
         }
         console.log(this.active)
@@ -158,5 +188,8 @@
     text-align: center;
     padding-left: 6px;
     cursor: pointer
+  }
+  .navmenu-list>div:last-child{
+    border-bottom: 0;
   }
 </style>

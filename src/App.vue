@@ -45,6 +45,7 @@
     float: left;
     position: relative;
     font-size: 14px;
+    box-sizing: border-box;
   }
 
   .center {
