@@ -35,7 +35,7 @@
             </el-dropdown>
             <div class="search">
               <input type="text" class="center-y" placeholder="身份证、学号、手机号、姓名">
-              <el-button class="button center-y">搜 索</el-button>
+              <el-button class="button center-y" @click="searchFn()" v-model="search">搜 索</el-button>
             </div>
           </div>
           <div class="main_zhuye">
@@ -112,77 +112,80 @@
               </div>
             </div>
           </div>
-          <div class="mian_school" v-for="i in 10" :key="i" @click="flag=true">
+          <div class="mian_school" v-for="(item,i) in listData" :key="i" @click="searchFn(i)">
             <div class="main_zhuye_titile" style="
                 width: 8%;
             ">
-              彭冻革
+
+              {{item.name}}
             </div>
             <div class="main_zhuye_titile" style="
                 width: 4%;
             ">
-              男
+              {{item.sex}}
             </div>
             <div class="main_zhuye_titile" style="
                 width: 4%;
             ">
-              15
+            {{item.age}}
             </div>
             <div class="main_zhuye_titile" style="
                 width: 8%;
             ">
-              148
+
+              {{item.fs}}
             </div>
             <div class="main_zhuye_titile" style="
                 width: 9%;
             ">
-              木叶
+
+              {{item.zy}}
             </div>
             <div class="main_zhuye_titile" style="
                 width: 5%;
             ">
-              应届生
+              {{item.sy}}
             </div>
             <div class="main_zhuye_titile" style="
                 width: 5%;
             ">
-              3+2
+              {{item.xz}}
             </div>
             <div class="main_zhuye_titile" style="
                 width: 5%;
             ">
-              农业
+              {{item.jt}}
             </div>
             <div class="main_zhuye_titile" style="
                 width: 10%;
             ">
-              省重点高中
+              {{item.school}}
             </div>
             <div class="main_zhuye_titile" style="
                 width: 6%;
             ">
-              谢大海
+            {{item.ls}}
             </div>
             <div class="main_zhuye_titile" style="
                 width: 36%;
             ">
               <div>
-                ●
+                {{item.sh}}
               </div>
               <div>
-                ●
+                {{item.jf}}
               </div>
               <div>
-                ●
+                {{item.fb}}
               </div>
               <div>
-                ○
+                {{item.zp}}
               </div>
               <div>
-                ○
+                {{item.xc}}
               </div>
               <div>
-                ○
+                {{item.wp}}
               </div>
             </div>
           </div>
@@ -287,6 +290,7 @@
         activeTC:null,
         flag:false,
         currentPage3: 5,
+        maxPage:2,
         serverData: [{
           title: '民武2001',
           id: 1
@@ -363,8 +367,33 @@
             ],
             sex1: ['2-402', '2-402', '2-402', '2-402', '2-402', '2-402', '2-402', '2-402']
           }
-        }
+        },
+        listData:[
+          {
+            name:'彭冻革',
+            sex:'男',
+            age:15,
+            fs:'148',
+            zy:'木叶',
+            sy:'应届生',
+            xz:'3+2',
+            jt:'农业',
+            school:'省重点高中',
+            time:'11-24 23:12',
+            ls:'谢大海',
+            sh:'●',
+            jf:'●',
+            fb:'●',
+            zp:'○',
+            xc:'○',
+            wp:'○'
+          }
+        ],
+        search:null
       }
+    },
+    mounted() {
+      this.getServerData()
     },
     methods: {
       handleCommand(e) {
@@ -389,6 +418,25 @@
       dianji(i){
         this.XSData[this.activeTC].leix=i.title;
         this.activeTC=null
+      },
+      getServerData(){
+        this.myAjax('/SetTab',{id:this.$route.query.id},(res)=>{
+          this.serverData=res.body.data.serverData;
+          this.maxPage=res.body.data.maxPage
+          this.banMain=res.body.data.banMain
+          this.listData=res.body.data.listData
+        })
+      },
+      searchFn(id){
+        if(id){
+           this.myAjax('/STSearch',{id},(res)=>{
+             this.XSData=res.body.data.listData
+           })
+        }
+        this.flag=true
+        this.myAjax('/STSearch',null,(res)=>{
+          this.XSData=res.body.data.listData
+        })
       }
     }
   }

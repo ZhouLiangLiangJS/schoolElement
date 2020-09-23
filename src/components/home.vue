@@ -5,15 +5,15 @@
         <div class="title">
           <div class="title_box">
             <img src="../../static/icon1.jpg" class="center-y" alt="">
-            <span>75 名</span>
+            <span>{{sererData.day1}} 名</span>
           </div>
           <div class="title_box center">
             <img src="../../static/icon3.jpg" class="center-y" alt="">
-            <span>75 名</span>
+            <span>{{sererData.day2}} 名</span>
           </div>
           <div class="title_box" style="right: 0;">
             <img src="../../static/icon4.jpg" class="center-y" alt="">
-            <span>75 名</span>
+            <span>{{sererData.day3}} 名</span>
           </div>
         </div>
         <div class="main_main">
@@ -21,8 +21,8 @@
             <span>报名新生一览表：</span>
             <el-button class="button">添加新生信息</el-button>
             <div class="search">
-              <input type="text" class="center-y" placeholder="身份证、学号、手机号、姓名">
-              <el-button class="button center-y">搜 索</el-button>
+              <input type="text" class="center-y" v-model="search" placeholder="身份证、学号、手机号、姓名">
+              <el-button class="button center-y" @click="searchAjax">搜 索</el-button>
             </div>
           </div>
           <div  class="main_zhuye">
@@ -99,83 +99,85 @@
               </div>
             </div>
           </div>
-          <div class="mian_school" v-for="i in 10" :key="i" @click="handleRouter">
+          <div class="mian_school" v-for="(item,i) in sererData.arr" :key="i" @click="handleRouter('xinjianxs?id=1')">
             <div  class="main_zhuye_titile" style="
                 width: 8%;
             ">
-              彭冻革
+              {{item.name}}
+
             </div>
             <div  class="main_zhuye_titile" style="
                 width: 4%;
             ">
-              男
+            {{item.sex}}
             </div>
             <div  class="main_zhuye_titile" style="
                 width: 4%;
             ">
-              15
+              {{item.age}}
             </div>
             <div  class="main_zhuye_titile" style="
                 width: 8%;
             ">
-              148
+              {{item.fs}}
             </div>
             <div  class="main_zhuye_titile" style="
                 width: 9%;
             ">
-              木叶
+              {{item.zy}}
             </div>
             <div  class="main_zhuye_titile" style="
                 width: 5%;
             ">
-              应届生
+              {{item.sy}}
             </div>
             <div  class="main_zhuye_titile" style="
                 width: 5%;
             ">
-              3+2
+
+              {{item.xz}}
             </div>
             <div  class="main_zhuye_titile" style="
                 width: 5%;
             ">
-              农业
+              {{item.jt}}
             </div>
             <div  class="main_zhuye_titile" style="
                 width: 8%;
             ">
-              11-24 23:12
+            {{item.time}}
             </div>
             <div  class="main_zhuye_titile" style="
                 width: 8%;
             ">
-              谢大海
+              {{item.ls}}
             </div>
             <div  class="main_zhuye_titile" style="
                 width: 36%;
             ">
               <div >
-                ●
+                {{item.sh}}
               </div>
               <div >
-                ●
+                {{item.jf}}
               </div>
               <div >
-                ●
+                {{item.fb}}
               </div>
               <div >
-                ○
+                {{item.zp}}
               </div>
               <div >
-                ○
+                {{item.xc}}
               </div>
               <div >
-                ○
+                {{item.wp}}
               </div>
             </div>
           </div>
           <div class="mian_fenye">
             <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="currentPage3"
-              :page-size="100" layout="prev, pager, next, jumper" :total="1000" class="center-y">
+              :page-size="10" layout="prev, pager, next, jumper" :total="sererData.maxPage*10" class="center-y">
             </el-pagination>
             <!-- <el-pagination
                 layout="prev, pager, next"
@@ -204,8 +206,15 @@
     },
     data() {
       return {
-        currentPage3: 5
+        currentPage3: 1,
+        sererData:{
+          maxPage:1,
+        },
+        search:null
       }
+    },
+    mounted() {
+      this.getserverdata(this.currentPage3)
     },
     methods: {
       handleSizeChange(val) {
@@ -213,9 +222,20 @@
       },
       handleCurrentChange(val) {
         console.log(`当前页: ${val}`);
+        this.getserverdata(val)
       },
-      handleRouter(){
-        console.log(this.$router.push('xinjianxs'))
+      handleRouter(e){
+        console.log(this.$router.push(e))
+      },
+      getserverdata(i){
+        this.myAjax('/parameter/query',{page: i},(res)=>{
+          this.sererData=res.body.data
+        })
+      },
+      searchAjax(){
+        this.myAjax('/parameter/search',{search:this.search,i:2},(res)=>{
+          this.sererData=res.body.data
+        })
       }
     }
   }

@@ -5,28 +5,28 @@
         <div class="title">
           <div class="title_box">
             <img src="../../static/icon9.jpg" class="center-y" alt="">
-            <span>4 个缴费项目</span>
+            <span>{{serverData.data1}} 个缴费项目</span>
           </div>
           <div class="title_box center">
             <img src="../../static/icon10.jpg" class="center-y" alt="">
-            <span>564 笔缴费</span>
+            <span>{{serverData.data2}} 笔缴费</span>
           </div>
           <div class="title_box" style="right: 0;">
             <img src="../../static/icon11.jpg" class="center-y" alt="">
-            <span>856871.97 元</span>
+            <span>{{serverData.data3}} 元</span>
           </div>
         </div>
         <div class="title leftTitle">
-          <div class="title_box" v-for="i in 4" :key="i">
-            <div class="title_title">2020-2021学年春秋校服费</div>
+          <div class="title_box" v-for="(item,i) in serverData.arr1" :key="i">
+            <div class="title_title">{{item.title}}</div>
             <div class="title_cen">
               <div>
-                <div>学生处</div>
-                <div>共计：241笔</div>
+                <div>{{item.name}}</div>
+                <div>共计：{{item.gj}}笔</div>
               </div>
               <div style="width: 40%;">
-                <div>500/人</div>
-                <div>8596元</div>
+                <div>{{item.num}}/人</div>
+                <div>{{item.money}}元</div>
               </div>
             </div>
           </div>
@@ -50,21 +50,21 @@
               时间
             </div>
           </div>
-          <div class="mian_school" v-for="i in 10" :key="i" @click="go('/JFXQ')">
+          <div class="mian_school" v-for="(item,i) in serverData.arr2" :key="i" @click="go('/JFXQ')">
             <div class="main_zhuye_titile" style="width: 15%;">
-              彭冻革
+              {{item.name}}
             </div>
             <div class="main_zhuye_titile" style="width: 25%;">
-              308201809092700387
+              {{item.xh}}
             </div>
             <div class="main_zhuye_titile" style="width: 10%;">
-              500
+              {{item.money}}
             </div>
             <div class="main_zhuye_titile" style="width: 35%;text-align: left;padding-left: 20px;">
-              2020-2021学年春秋校服费
+              {{item.title}}
             </div>
             <div class="main_zhuye_titile" style="width: 15%;">
-              11-24 23:13
+              {{item.time}}
             </div>
           </div>
           <div class="mian_fenye" @click="go('/AJF')">
@@ -85,8 +85,55 @@
     },
     data() {
       return {
-        currentPage3: 5
+        currentPage3: 1,
+		serverData:{
+			data1:4,
+			data2:564,
+			data3:888,
+			arr1:[
+				{
+					title:'2020-2021学年春秋校服费',
+					name:'学生处',
+					gj:241,
+					num:500,
+					money:8596
+				},
+				{
+					title:'2020-2021学年春秋校服费',
+					name:'学生处',
+					gj:241,
+					num:500,
+					money:8596
+				},
+				{
+					title:'2020-2021学年春秋校服费',
+					name:'学生处',
+					gj:241,
+					num:500,
+					money:8596
+				},
+				{
+					title:'2020-2021学年春秋校服费',
+					name:'学生处',
+					gj:241,
+					num:500,
+					money:8596
+				}
+			],
+			arr2:[
+				{
+					name:"彭冻革",
+					xh:'308201809092700387',
+					money:500,
+					title:'2020-2021学年春秋校服费',
+					time:'11-24 23:13'
+				}
+			]
+		}
       }
+    },
+    mounted() {
+      this.getserverdata()
     },
     methods: {
       handleRouter() {
@@ -94,7 +141,12 @@
       },
       go(e) {
         this.$router.push(e)
-      }
+      },
+      getserverdata(i){
+        this.myAjax('/jfgl',{},(res)=>{
+          this.serverData=res.body.data
+        })
+      },
     }
   }
 </script>

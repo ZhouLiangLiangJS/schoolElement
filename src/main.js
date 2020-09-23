@@ -9,10 +9,26 @@ import VueQuillEditor from 'vue-quill-editor'
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
+import VueResource from 'vue-resource'
+require('./mock');
+Vue.use(VueResource)
 Vue.use(VueQuillEditor);
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 
+Vue.prototype.myAjax=(path,data,success,error)=>{
+	Vue.http.post(path,data,{emulateJSON:true}).then(res=>{
+	  console.log(res)
+    if(success){
+      success(res)
+    }
+	}, err=>{
+	  console.log(err)
+    if(error){
+      error(err)
+    }
+	});
+}
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

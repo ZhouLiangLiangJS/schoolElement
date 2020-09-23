@@ -6,7 +6,7 @@
           <div>
             <el-button class="button ">保 存</el-button>
             <el-button class="button " style="background-color: #FFFFFF;color: #707070;" @click="back">返 回</el-button>
-            <img src="../../static/touxiang.png" class="toux" alt="">
+            <img :src="img" class="toux" alt="">
           </div>
         </div>
         <div class="main_main">
@@ -15,7 +15,7 @@
           </div>
           <div class="main_main_left" style="text-align: left;font-weight: 400;width: 35%;">
             <div style="cursor: pointer;" v-for="(item,i) in arr2" :key="i" @mousemove="mouse=i" @mouseleave="mouse=null">
-              <input type="text" v-model="arr2[i]" v-show="active==i">
+              <input type="text" v-model="arr2[i]" @blur="xg(i)" v-show="active==i">
               <span v-show='active!=i'>{{item}}</span>
               <span v-show="mouse==i" @click="active==i?active=null:active=i"><img style="width: 15px;" src="../../static/icon12.jpg" alt=""></span>
             </div>
@@ -60,49 +60,30 @@
         flag:false,
         mouse:null,
         active:null,
-        arr1: ["姓名： ", " 申报专业： ", "身份证号： ", "学号： ", "性别： ", "民族： ", "个人联系电话： ", "QQ： ", "政治面貌： ", "文化程度： ", "身高： ",
-          "体重： ", "籍贯： ",
-          "毕业学校： ", "毕业时间： ", "入学分数： ", "现居住地址： ", "第一监护人电话： ", "第二监护人电话： ", "第三监护人电话： ", "家庭住址： ", "家庭类型： ",
-          "学生类别： ",
-          "是否本市户籍： ", "是否连片贫困： ", "是否残疾： ", "是否孤儿： ", "是否低保： ", "培养层次： ", "班级： ", "学制： ", "招生学期： ", "推荐人： ",
-          "推荐人电话： ",
-          "通知书领取方式： ", "报名时间： "
-        ],
-        arr2: [
-          "宁成美", "民族武术", "130921200212305612", "308201309092700188", "男", "汉", "15139225822", "894381734", "团员",
-          "初中毕业", "168", "53", "河北省沧县", "沧县中学", "2020年6月", "317", "河北省沧州市沧县纸房头乡周", "18733281590", "13343812593",
-          "18934728981", "河北省沧州市沧县纸房头乡周", "农业", "应届", "是", "否", "否", "否", "是", "小中专 ", "（未分班）", "三年", "秋季", "陈春明",
-          "13352837426", "自取", "2020年8月22日 13:12:09"
-        ],
-        arr3:[
-          {
-            title:"民族武术专业参考信息",
-            arr:[]
-          },
-          {
-            title:"审核情况:",
-            arr:[
-              "● 该专业已审核通过38人，占全部新生18.3%",
-              "● 审核通过人中中考成绩最高376分，最低215分，平 均分数285.6分",
-              "● 审核通过人中男17人，女21人",
-              "● 审核通过人中家庭类型为农业32人，非农6人"
-            ]
-          },
-          {
-            title:"缴费情况：",
-            arr:[
-              "● 该专业已完成缴费人员25人，占全部已缴费新生 数量的19.5% ",
-              "● 已完成缴费人中中考成绩最高323分，最低232分， 平均分数292.6分 ",
-              "● 已完成缴费人中男14人，女11人",
-              "● 已完成缴费中家庭类型为农业23人，非农2人"
-            ]
-          }
-        ]
+        arr1: [],
+        arr2: [],
+        arr3:[],
+        img:''
       }
+    },
+    mounted() {
+      this.getServerData()
     },
     methods: {
       back(){
         console.log(this.$router.go(-1))
+      },
+      getServerData(){
+        let id=this.$route.query.id
+        this.myAjax('/xinjianxs',{id:id},(res)=>{
+          this.img=res.body.data.img
+          this.arr1=res.body.data.arr1
+          this.arr2=res.body.data.arr2
+          this.arr3=res.body.data.arr3
+        })
+      },
+      xg(i){
+        this.myAjax('/xinjianxs/xg',{content:this.arr2[i],id:i})
       }
     }
   }

@@ -5,15 +5,15 @@
         <div class="title">
           <div class="title_box">
             <img src="../../static/icon5.jpg" class="center-y" alt="">
-            <span>75 名</span>
+            <span>{{serverData.day1}} 名</span>
           </div>
           <div class="title_box center">
             <img src="../../static/icon6.jpg" class="center-y" alt="">
-            <span>75 名</span>
+            <span>{{serverData.day2}} 名</span>
           </div>
           <div class="title_box" style="right: 0;">
             <img src="../../static/icon7.jpg" class="center-y" alt="">
-            <span>75 名</span>
+            <span>{{serverData.day3}} 名</span>
           </div>
         </div>
         <div class="main_main">
@@ -24,7 +24,7 @@
             <span style="font-weight: 400;">（下载导入模版）</span>
             <div class="search">
               <input type="text" class="center-y" placeholder="身份证、学号、手机号、姓名">
-              <el-button class="button center-y">搜 索</el-button>
+              <el-button class="button center-y" @click="searchAjax">搜 索</el-button>
             </div>
           </div>
           <div class="main_zhuye" >
@@ -59,41 +59,41 @@
               负责流程
             </div>
           </div>
-          <div class="mian_school" v-for="i in 10" :key="i" @click="handleRouter">
+          <div class="mian_school" v-for="(item,i) in serverData.arr" :key="i" @click="handleRouter">
             <div class="main_zhuye_titile" style="
                 width: 10%;
             ">
-              聂辛庄
+              {{item.name}}
             </div>
             <div class="main_zhuye_titile" style="
                 width: 8%;
             ">
-              男
+              {{item.sex}}
             </div>
             <div class="main_zhuye_titile" style="
                 width: 15%;
             ">
-              130921200212305612
+              {{item.zgh}}
             </div>
             <div class="main_zhuye_titile" style="
                 width: 15%;
             ">
-              15139225822
+              {{item.tel}}
             </div>
             <div class="main_zhuye_titile" style="
                 width: 15%;
             ">
-              民族武术
+              {{item.zy}}
             </div>
             <div class="main_zhuye_titile" style="
                   width: 37%;
               ">
-              招就处
+              {{item.fz}}
             </div>
           </div>
           <div class="mian_fenye">
             <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="currentPage3"
-              :page-size="100" layout="prev, pager, next, jumper" :total="1000" class="center-y">
+              :page-size="10" layout="prev, pager, next, jumper" :total="serverData.maxPage*10" class="center-y">
             </el-pagination>
             <!-- <el-pagination
                 layout="prev, pager, next"
@@ -120,11 +120,17 @@
   export default {
     data() {
       return {
-        currentPage3: 5
+        currentPage3: 1,
+        search:null,
+        serverData:{
+        }
       }
     },
     components: {
       Info
+    },
+    mounted() {
+      this.getserverdata(this.currentPage3)
     },
     methods: {
       handleSizeChange(val) {
@@ -132,9 +138,20 @@
       },
       handleCurrentChange(val) {
         console.log(`当前页: ${val}`);
+      this.getserverdata(val)
       },
       handleRouter() {
         console.log(this.$router.push('/createTeacher'))
+      },
+      getserverdata(i){
+        this.myAjax('/parameter/teacher',{page: i},(res)=>{
+          this.serverData=res.body.data
+        })
+      },
+      searchAjax(){
+        this.myAjax('/teacher/search',{search:this.search},(res)=>{
+          this.serverData=res.body.data
+        })
       }
     }
   }

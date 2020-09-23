@@ -5,8 +5,8 @@
         <div class="main_main">
           <div class="main_nav">
             <div class="search">
-              <input type="text" class="center-y" placeholder="身份证、学号、手机号、姓名">
-              <el-button class="button center-y">搜 索</el-button>
+              <input type="text" class="center-y" v-model="search" placeholder="身份证、学号、手机号、姓名">
+              <el-button class="button center-y" @click="searchFn">搜 索</el-button>
             </div>
           </div>
           <div class="main_zhuye">
@@ -35,35 +35,35 @@
               缴费流水号
             </div>
           </div>
-          <div class="mian_school" v-for="i in 12"  @click="go('/JFXQ')" :key="i">
+          <div class="mian_school" v-for="(item,i) in serverData.arr"  @click="go('/JFXQ?id='+i)" :key="i">
             <div class="main_zhuye_titile" style="width: 8%;">
-              彭冻革
+              {{item.name}}
             </div>
             <div class="main_zhuye_titile" style="width: 15%;">
-              308201809092700387
+              {{item.xh}}
             </div>
             <div class="main_zhuye_titile" style="width: 5%;">
-              500000
+              {{item.money}}
             </div>
             <div class="main_zhuye_titile" style="width: 20%;text-align: left;padding-left: 20px;">
-              2020-2021学年春秋校服费
+              {{item.title}}
             </div>
             <div class="main_zhuye_titile" style="width: 10%;">
-              11-24 23:13
+              {{item.time}}
             </div>
             <div class="main_zhuye_titile" style="width: 15%;">
-              15227579113
+              {{item.tel}}
             </div>
             <div class="main_zhuye_titile" style="width: 10%;">
-              民武2011班
+              {{item.class}}
             </div>
             <div class="main_zhuye_titile" style="width: 17%;">
-              130921200212305612
+              {{item.liuS}}
             </div>
           </div>
           <div class="mian_fenye">
             <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="currentPage3"
-              :page-size="100" layout="prev, pager, next, jumper" :total="1000" class="center-y">
+              :page-size="12" layout="prev, pager, next, jumper" :total="serverData.maxPage*12" class="center-y">
             </el-pagination>
             <!-- <el-pagination
                 layout="prev, pager, next"
@@ -92,8 +92,18 @@
     },
     data() {
       return {
-        currentPage3: 5
+        currentPage3: 1,
+        search:null,
+        maxPage:2,
+        serverData:{
+          maxPage:2,
+          arr:[
+          ]
+        }
       }
+    },
+    mounted() {
+      this.getServerData()
     },
     methods: {
       handleSizeChange(val) {
@@ -107,6 +117,16 @@
       },
       go(e) {
         this.$router.push(e)
+      },
+      searchFn(){
+        this.myAjax('/AJF',{search:this.search},(res)=>{
+          this.serverData=res.body.data
+        })
+      },
+      getServerData(){
+        this.myAjax('/AJF',{},(res)=>{
+          this.serverData=res.body.data
+        })
       }
     }
   }

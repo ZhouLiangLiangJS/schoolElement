@@ -53,7 +53,7 @@
               <div class="main_list_left">部门：</div>
               <div class="main_list_right" v-for="(item,i) in serverData.buMen" :key='i'>
                 <span>{{item}}</span>
-                <img  @click="serverData.buMen.splice(i,1)" src="../../static/icon8.jpg" class="center-y">
+                <img  @click="buMenDel(i)" src="../../static/icon8.jpg" class="center-y">
               </div>
               <div class="main_list_right dx" @click="open(1)">+</div>
             </div>
@@ -65,7 +65,7 @@
               <div class="main_list_left">负责流程：</div>
               <div class="main_list_right" v-for="(item,i) in serverData.liuC" :key='i'>
                 <span>{{item}}</span>
-                <img  @click="serverData.liuC.splice(i,1)" src="../../static/icon8.jpg" class="center-y">
+                <img  @click="liuCDel(i) " src="../../static/icon8.jpg" class="center-y">
               </div>
               <div class="main_list_right dx" @click="open(0)">+</div>
             </div>
@@ -82,21 +82,24 @@
   export default {
     data() {
       return {
-        serverData: {
-          title: "聂辛庄",
-          sex:"男",
-          gongHao: "130921200212305612",
-          tel: "15139225822",
-          buMen: ["民族武术"],
-          passWord: "********",
-          liuC: ["招就处"]
-        }
+        serverData: {}
       }
     },
     components: {
       Info
     },
+    mounted() {
+      this.getserverData()
+    },
     methods: {
+      del(i){
+        this.serverData.buMen.splice(i,1)
+        this.myAjax('/createTeacher',{id:i})
+      },
+      liuCDel(){
+        this.serverData.liuC.splice(i,1)
+        this.myAjax('/createTeacher',{id:i})
+      },
       back() {
         console.log(this.$router.go(-1))
       },
@@ -114,8 +117,10 @@
           });
           if(e){
             this.serverData.buMen.push(value)
+            this.myAjax('/createTeacher',{type:1,value})
           }else{
             this.serverData.liuC.push(value)
+            this.myAjax('/createTeacher',{type:0,value})
           }
         }).catch(() => {
           this.$message({
@@ -123,6 +128,11 @@
             message: '取消输入'
           });
         });
+      },
+      getserverData(){
+        this.myAjax('/createTeacher',{},(res)=>{
+          this.serverData=res.body.data
+        })
       }
     }
   }

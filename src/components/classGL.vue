@@ -15,7 +15,7 @@
       </div>
       <div class="cen_lei">
         <div class="cen_button_A">
-          报 道 新 生<span style="font-weight: 400;"> (1000000)</span>
+          报 道 新 生<span style="font-weight: 400;"> ({{serverData.titleNum}})</span>
           <em class="center-x"></em>
         </div>
         <div class="cen_xian" :style="'width:'+(serverData.ArrC.length)*200+'px;'"></div>
@@ -32,7 +32,7 @@
         <div style="overflow: hidden;">
           <div class="cen_fenban_child" v-for="(item,i) in serverData.ArrC" :key="i">
             <div class="cen_fenban_child_leftX" :style="'height:'+(((item.child.length+1)*60)-20)+'px;'"></div>
-            <div class="cen_fenban_child_box" v-for="(child,n) in item.child" :key="n" @click="go('/SetTab')">
+            <div class="cen_fenban_child_box" v-for="(child,n) in item.child" :key="n" @click="go('/SetTab?id='+n)">
               <span>{{child.title}}({{child.num}})</span>
               <em class="center-y"></em>
             </div>
@@ -59,104 +59,15 @@
     data() {
       return {
         serverData: {
-          titleNum: 123,
-          ArrC: [{
-              title: '船舶专业群',
-              num: 119,
-              child: [{
-                  title: '船舶2001班',
-                  num: 123
-                }
-              ]
-            },
+          titleNum: 0,
+          ArrC: [
 
-            {
-              title: '船舶专业群',
-              num: 119,
-              child: [{
-                  title: '船舶2001班',
-                  num: 123
-                },
-                {
-                  title: '船舶2001班',
-                  num: 123
-                }
-              ]
-            },
-            {
-              title: '船舶专业群',
-              num: 119,
-              child: [{
-                  title: '船舶2001班',
-                  num: 123
-                },
-                {
-                  title: '船舶2001班',
-                  num: 123
-                },
-                {
-                  title: '船舶2001班',
-                  num: 123
-                },
-                {
-                  title: '船舶2001班',
-                  num: 123
-                }
-              ]
-            },
-            {
-              title: '船舶专业群',
-              num: 119,
-              child: [{
-                  title: '船舶2001班',
-                  num: 123
-                },
-                {
-                  title: '船舶2001班',
-                  num: 123
-                },
-                {
-                  title: '船舶2001班',
-                  num: 123
-                }
-              ]
-            },
-            {
-              title: '船舶专业群',
-              num: 119,
-              child: [{
-                  title: '船舶2001班',
-                  num: 123
-                },
-                {
-                  title: '船舶2001班',
-                  num: 123
-                },
-                {
-                  title: '船舶2001班',
-                  num: 123
-                },
-                {
-                  title: '船舶2001班',
-                  num: 123
-                },
-                {
-                  title: '船舶2001班',
-                  num: 123
-                },
-                {
-                  title: '船舶2001班',
-                  num: 123
-                },
-                {
-                  title: '船舶2001班',
-                  num: 123
-                }
-              ]
-            }
           ]
         }
       }
+    },
+    mounted() {
+      this.getServerData()
     },
     methods: {
       canMif(e){
@@ -217,7 +128,11 @@
             message: '取消输入'
           });
         });
-
+      },
+      getServerData(){
+        this.myAjax('/CGL',{id:this.$route.query.id},(res)=>{
+          this.serverData=res.body.data
+        })
       }
     }
   }

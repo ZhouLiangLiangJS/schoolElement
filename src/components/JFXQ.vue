@@ -19,6 +19,7 @@
               <div>班级：</div>
               <div>班主任：</div>
               <div>缴费时间：</div>
+              <div>缴费方式：</div>
             </div>
             <div class="main_cen_right">
               <div>{{serverData.liuShui}}</div>
@@ -62,6 +63,9 @@
     components: {
       Info
     },
+    mounted() {
+      this.getServerData()
+    },
     methods: {
       back() {
         console.log(this.$router.go(-1))
@@ -89,6 +93,11 @@
             message: '取消输入'
           });
         });
+      },
+      getServerData(){
+        this.myAjax('/JFXQ',{id:this.$route.query.id},(res)=>{
+          this.serverData=res.body.data
+        })
       }
     }
   }
