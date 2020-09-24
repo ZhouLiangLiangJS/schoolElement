@@ -22,21 +22,21 @@
               操 作
             </div>
           </div>
-          <div class="mian_school" v-for="i in 12"   :key="i">
+          <div class="mian_school" v-for="(item,i) in serverData.arr" :key="i">
             <div class="main_zhuye_titile" style="width: 70%;text-align: left;padding-left: 60px;">
-              如何坐车或打车到学校？
+              {{item.content}}
             </div>
             <div class="main_zhuye_titile" style="width: 15%;">
-              11-24 23:13
+              {{item.time}}
             </div>
             <div class="main_zhuye_titile" style="width: 15%;">
               <span style="margin-right: 10px;" @click="$router.push('TJCJWT')">编辑</span>
-              <span style="margin-left: 10px;">删除</span>
+              <span style="margin-left: 10px;" @click="del(i)">删除</span>
             </div>
           </div>
           <div class="mian_fenye">
             <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="currentPage3"
-              :page-size="100" layout="prev, pager, next, jumper" :total="1000" class="center-y">
+              :page-size="12" layout="prev, pager, next, jumper" :total="serverData.maxPage*12" class="center-y">
             </el-pagination>
           </div>
         </div>
@@ -54,8 +54,16 @@
     },
     data() {
       return {
-        currentPage3: 5
+        currentPage3: 5,
+        serverData: {
+          maxPage: 2,
+          arr: []
+
+        }
       }
+    },
+    mounted() {
+      this.getServerData()
     },
     methods: {
       handleSizeChange(val) {
@@ -69,6 +77,16 @@
       },
       go(e) {
         this.$router.push(e)
+      },
+      getServerData() {
+        this.myAjax('/CJWT', {}, (res) => {
+          this.serverData = res.body.data
+        })
+      },
+      del(i){
+        this.myAjax('/CJWT', {i}, (res) => {
+          this.serverData = res.body.data
+        })
       }
     }
   }
@@ -158,7 +176,8 @@
     transform: translateY(-50%);
     left: 7vw;
   }
-  .title_main{
+
+  .title_main {
     color: #707070;
     line-height: 50px;
     font-weight: 900;

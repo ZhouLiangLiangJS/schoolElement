@@ -18,23 +18,23 @@
               附加选项
             </div>
           </div>
-          <div class="mian_school" v-for="i in 12"  @click="$router.push('TZXQ')" :key="i">
+          <div class="mian_school" v-for="(item,i) in serverData.arr"  @click="$router.push('TZXQ?id='+i)" :key="i">
             <div class="main_zhuye_titile" style="width: 15%;">
-              11-24 23:13
+              {{item.time}}
             </div>
             <div class="main_zhuye_titile" style="width: 55%;">
-              学校报名缴费截止时间为2020年9月15日，请还没完成报名的同学尽……
+              {{item.content}}
             </div>
             <div class="main_zhuye_titile" style="width: 15%;">
-              全部学生
+              {{item.type}}
             </div>
             <div class="main_zhuye_titile" style="width: 15%;">
-              全部
+              {{item.FJ}}
             </div>
           </div>
           <div class="mian_fenye">
             <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="currentPage3"
-              :page-size="100" layout="prev, pager, next, jumper" :total="1000" class="center-y">
+              :page-size="12" layout="prev, pager, next, jumper" :total="serverData.maxPage*12" class="center-y">
             </el-pagination>
           </div>
         </div>
@@ -52,8 +52,16 @@
     },
     data() {
       return {
-        currentPage3: 5
+        currentPage3: 1,
+        serverData:{
+          maxPage:2,
+          arr:[
+        ]
+        }
       }
+    },
+    mounted() {
+      this.getServerData(1)
     },
     methods: {
       handleSizeChange(val) {
@@ -61,12 +69,18 @@
       },
       handleCurrentChange(val) {
         console.log(`当前页: ${val}`);
+        this.getServerData(val)
       },
       handleRouter() {
         console.log(this.$router.push('xinjianxs'))
       },
       go(e) {
         this.$router.push(e)
+      },
+      getServerData(e){
+        this.myAjax('/sendLS', {page:e}, (res) => {
+          this.serverData = res.body.data
+        })
       }
     }
   }

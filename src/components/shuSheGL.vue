@@ -47,77 +47,16 @@
       return {
         currentPage3: 5,
         serverData: {
-          classShuShe: [{
-              id: 1,
-              title: '民武20001班'
-            },
-            {
-              id: 1,
-              title: '民武20001班'
-            },
-            {
-              id: 1,
-              title: '民武20001班'
-            },
-            {
-              id: 1,
-              title: '民武20001班'
-            },
-            {
-              id: 1,
-              title: '民武20001班'
-            },
-            {
-              id: 1,
-              title: '民武20001班'
-            },
-            {
-              id: 1,
-              title: '民武20001班'
-            },
-            {
-              id: 1,
-              title: '民武20001班'
-            },
-            {
-              id: 1,
-              title: '民武20001班'
-            },
-            {
-              id: 1,
-              title: '民武20001班'
-            },
-            {
-              id: 1,
-              title: '民武20001班'
-            }
-          ],
+          classShuShe: [],
           shushehao: {
-            sex0: [{
-                id: 1,
-                title: "一号楼"
-              },
-              {
-                id: 1,
-                title: "一号楼"
-              },
-              {
-                id: 1,
-                title: "一号楼"
-              }
-            ],
-            sex1: [{
-                id: 1,
-                title: "一号楼"
-              },
-              {
-                id: 1,
-                title: "一号楼"
-              }
-            ]
+            sex0: [],
+            sex1: []
           }
         }
       }
+    },
+    created() {
+      this.getServerData()
     },
     methods: {
       handleSizeChange(val) {
@@ -150,8 +89,13 @@
         //     message: '取消输入'
         //   });
         // });
-        
+
         this.$router.push('createSS')
+      },
+      getServerData() {
+        this.myAjax('/SSGL', null, (res) => {
+          this.serverData = res.body.data
+        })
       }
     }
   }

@@ -2,33 +2,34 @@
   <div class="main">
     <div class="send_neir">
       <div class="title">通知内容：</div>
-      <textarea class="sendText" placeholder="（文字内容不能超过150个字，不能包括特殊符号）" maxlength="150"></textarea>
+      <textarea class="sendText" v-model="text" placeholder="（文字内容不能超过150个字，不能包括特殊符号）" maxlength="150"></textarea>
     </div>
     <div class="send_neir">
       <div class="title">通知对象：</div>
       <label>
-        <input type="radio" name="table" checked>
+        <input type="radio" name="table" :checked="qbxs" @click="qbxs=!qbxs">
         <span>全部新生</span>
       </label>
       <label>
-        <input type="radio" name="table">
+        <input type="radio" name="table" :checked="!qbxs" @click="qbxs=!qbxs">
         <span>无</span>
       </label>
-      <div class="send_list" v-for="(item,i) in serverData.serverArr" :key="i" >
+      <div class="send_list" v-for="(item,i) in serverData.serverArr" :key="i">
         <div class="send_list_title" :style="'width:'+((item.title.length*15)+120)+'px'">
-          <el-divider  content-position="left" >{{item.title}}</el-divider>
+          <el-divider content-position="left">{{item.title}}</el-divider>
         </div>
         <div class="lb" v-for="(child,n) in  item.arr" :key="n">
-          <input type="checkbox" :checked="child.flag">
+          <input type="checkbox" :checked="child.flag" v-model="child.flag">
           <span>{{child.text}}</span>
         </div>
       </div>
-      <div class="send_list" >
+      <div class="send_list">
         <div>预计接受到消息为：{{serverData.num}}人</div>
         <div class="qr">
           <el-button @click="flag=true">发 送 通 知</el-button>
-          <el-button style="color: #707070;background-color: #FFFFFF;" >取 消 返 回</el-button>
-          <el-button style="color: #707070;background-color: #FFFFFF;float: right;" @click="$router.push('sendLS')">发 送 历 史</el-button>
+          <el-button style="color: #707070;background-color: #FFFFFF;">取 消 返 回</el-button>
+          <el-button style="color: #707070;background-color: #FFFFFF;float: right;" @click="$router.push('sendLS')">发 送
+            历 史</el-button>
         </div>
       </div>
     </div>
@@ -37,7 +38,7 @@
         <div>共{{serverData.num}}人将收到消息，是否发送？</div>
         <div class="qr showQR_btn center-x">
           <el-button @click="send()">发 送</el-button>
-          <el-button style="color: #707070;background-color: #FFFFFF;float: right;"  @click="flag=false">取 消</el-button>
+          <el-button style="color: #707070;background-color: #FFFFFF;float: right;" @click="flag=false">取 消</el-button>
         </div>
       </div>
     </div>
@@ -56,199 +57,78 @@
 <script>
   import Info from './info.vue'
   export default {
-    components:{
+    components: {
       Info
     },
-    data(){
-      return{
-        flag:false,
-        success:false,
-        serverData:{
-          num:539,
-          serverArr:[
-          {
-            title:"专业",
-            arr:[
-              {
-                text:"畜牧兽医",
-                flag:false
-              },{
-                text:"畜牧兽医",
-                flag:false
-              },{
-                text:"畜牧兽医",
-                flag:false
-              },{
-                text:"畜牧兽医",
-                flag:false
-              },{
-                text:"畜牧兽医",
-                flag:false
-              },{
-                text:"畜牧兽医",
-                flag:false
-              },{
-                text:"汽车运用制作",
-                flag:false
-              },{
-                text:"汽车运用制作",
-                flag:false
-              },{
-                text:"汽车运用制作",
-                flag:false
-              },{
-                text:"汽车运用制作",
-                flag:false
-              },{
-                text:"汽车运用制作",
-                flag:false
-              },{
-                text:"汽车运用制作",
-                flag:false
-              },{
-                text:"汽车运用制作",
-                flag:false
-              },{
-                text:"汽车运用制作",
-                flag:false
-              },{
-                text:"汽车运用制作",
-                flag:false
-              }
-            ]
-          },
-          {
-            title:"班级",
-            arr:[
-              {
-                text:"民武2011班",
-                flag:false
-              },{
-                text:"民武2011班",
-                flag:false
-              },{
-                text:"民武2011班",
-                flag:false
-              },{
-                text:"民武2011班",
-                flag:false
-              },{
-                text:"民武2011班",
-                flag:false
-              },{
-                text:"民武2011班",
-                flag:false
-              },{
-                text:"民武2011班",
-                flag:false
-              },{
-                text:"民武2011班",
-                flag:false
-              },{
-                text:"民武2011班",
-                flag:false
-              },{
-                text:"民武2011班",
-                flag:false
-              },{
-                text:"民武2011班",
-                flag:false
-              },{
-                text:"民武2011班",
-                flag:false
-              },{
-                text:"民武2011班",
-                flag:false
-              },{
-                text:"民武2011班",
-                flag:false
-              },{
-                text:"民武2011班",
-                flag:false
-              },
-              {
-                text:"民武2011班",
-                flag:false
-              },{
-                text:"民武2011班",
-                flag:false
-              },{
-                text:"民武2011班",
-                flag:false
-              },{
-                text:"民武2011班",
-                flag:false
-              },{
-                text:"民武2011班",
-                flag:false
-              },{
-                text:"民武2011班",
-                flag:false
-              },{
-                text:"民武2011班",
-                flag:false
-              },{
-                text:"民武2011班",
-                flag:false
-              },{
-                text:"民武2011班",
-                flag:false
-              },{
-                text:"民武2011班",
-                flag:false
-              }
-            ]
-          },
-          {
-            title:"附加选项",
-            arr:[
-              {
-                text:"男生",
-                flag:false
-              },
-              {
-                text:"女生",
-                flag:false
-              },
-              {
-                text:"未完成报道",
-                flag:false
-              },
-              {
-                text:"已完成报道",
-                flag:false
-              }
-            ]
-          }
-        ]
-        }
+    data() {
+      return {
+        flag: false,
+        success: false,
+        qbxs: true,
+        text: null,
+        serverData: {}
       }
     },
-    methods:{
-      open(){
+    created() {
+      this.getServerData()
+    },
+    methods: {
+      open() {
 
       },
-      send(){
-        this.flag=false;
-        this.success=true;
-        setTimeout(()=>{
-          this.success=false
-        },1000)
+      send() {
+        this.flag = false;
+        let arr = []
+        let cc = this.serverData.serverArr
+        for (let i in cc) {
+          for (let o in cc[i].arr) {
+            if (cc[i].arr[o].flag) {
+              console.log(cc[i].arr[o])
+              arr.push(cc[i].arr[o])
+            }
+          }
+        }
+        console.log(arr)
+        if (arr.length != 0) {
+          this.myAjax('/sedTZ', {
+            qbxs: this.qbxs,
+            text: this.text,
+            arr
+          }, (res) => {
+            this.success = true;
+            setTimeout(() => {
+              this.success = false
+            }, 2000)
+          })
+        } else {
+          this.$message({
+            message: '请选择通知对象',
+            type: 'warning'
+          });
+        }
+
+      },
+      getServerData() {
+        this.myAjax('/sedTZ', {}, (res) => {
+          this.serverData = res.body.data
+        })
       }
     }
   }
 </script>
 
 <style scoped>
-  .main{
+  .main {
     padding: 5%;
     color: #707070;
     overflow-y: scroll;
   }
-  .success{
+
+  .success {
     line-height: 80px;
   }
-  .success>span:first-child{
+
+  .success>span:first-child {
     display: inline-block;
     width: 50px;
     height: 50px;
@@ -261,35 +141,41 @@
     font-size: 30px;
     border-radius: 100%;
   }
-  .showQRMask{
+
+  .showQRMask {
     top: 0;
     left: 0;
-    background-color: rgba(0,0,0,0);
+    background-color: rgba(0, 0, 0, 0);
     width: 100vw;
     position: fixed;
     height: 100vh;
   }
-  .showQR{
+
+  .showQR {
     width: 350px;
-    padding:30px;
+    padding: 30px;
     position: absolute;
     height: 80px;
     top: 30%;
     background-color: #FFFFFF;
     box-shadow: 0px 3px 2px #00000029;
   }
-  .showQR>div{
+
+  .showQR>div {
     font-weight: 900;
   }
-  .showQR_btn{
+
+  .showQR_btn {
     width: 200px;
     bottom: 10px;
   }
-  .showQR_btn>button{
+
+  .showQR_btn>button {
     width: auto;
     padding: 0 20px;
     margin: 0 !important;
   }
+
   .qr {
     margin-top: 20px;
     padding-bottom: 10px;
@@ -307,18 +193,21 @@
     margin-right: 30px;
     border: 0;
   }
-  .send_neir{
+
+  .send_neir {
     margin-bottom: 10px;
     overflow: hidden;
     padding: 30px 10px 0 0;
   }
-  .title{
+
+  .title {
     width: 100px;
     float: left;
     font-weight: 900;
     height: 100%;
   }
-  .sendText{
+
+  .sendText {
     float: left;
     width: calc(100% - 100px);
     box-sizing: border-box;
@@ -327,34 +216,39 @@
     height: 100px;
     transform: translateY(-20px);
   }
-  .send_neir label{
+
+  .send_neir label {
     margin-right: 30px;
   }
-  .send_list{
+
+  .send_list {
     width: calc(100% - 100px);
     margin-left: 100px;
     overflow: hidden;
   }
-  .el-divider__text{
+
+  .el-divider__text {
     background-color: #F5F5F5;
     color: #707070;
   }
-  .el-divider{
+
+  .el-divider {
     background-color: #707070;
   }
-  .el-divider__text.is-left{
+
+  .el-divider__text.is-left {
     left: 40px;
   }
-  .send_list_title{
 
-  }
-  .lb{
+  .send_list_title {}
+
+  .lb {
     width: 100px;
     margin-bottom: 20px;
     float: left;
     margin-right: 20px;
     overflow: hidden;
-    text-overflow:ellipsis;
+    text-overflow: ellipsis;
     white-space: nowrap;
   }
 </style>

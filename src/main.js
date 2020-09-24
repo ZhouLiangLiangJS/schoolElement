@@ -15,19 +15,22 @@ Vue.use(VueResource)
 Vue.use(VueQuillEditor);
 Vue.use(ElementUI)
 Vue.config.productionTip = false
+window.console.warn = () => {}
+Vue.prototype.myAjax = (path, data, success, error) => {
 
-Vue.prototype.myAjax=(path,data,success,error)=>{
-	Vue.http.post(path,data,{emulateJSON:true}).then(res=>{
-	  console.log(res)
-    if(success){
+  Vue.http.post(path, data, {
+    emulateJSON: true
+  }).then(res => {
+    console.log(res)
+    if (success) {
       success(res)
     }
-	}, err=>{
-	  console.log(err)
-    if(error){
+  }, err => {
+    console.log(err)
+    if (error) {
       error(err)
     }
-	});
+  });
 }
 /* eslint-disable no-new */
 new Vue({

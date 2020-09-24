@@ -6,13 +6,13 @@
     <div class="title">
       <span>民武2011班宿舍</span>
       <div class="search">
-        <input type="text" class="center-y" placeholder="">
-        <el-button class="button center-y">搜 索</el-button>
+        <input type="text" class="center-y" placeholder="" v-model="search">
+        <el-button class="button center-y" @click="searchFn">搜 索</el-button>
       </div>
     </div>
     <div class="main_cen">
-      <div class="main_left " >
-          <div class="main_title">男生宿舍</div>
+      <div class="main_left ">
+        <div class="main_title">男生宿舍</div>
         <div v-for="(item,i) in serverData.sex1" :key="i">
           <div class="main_btn">
             <div class="btn_title">1-401</div>
@@ -31,8 +31,8 @@
         </div>
       </div>
       <div class="main_right ">
-          <div class="main_title">女生宿舍</div>
-        <div  v-for="(item,i) in serverData.sex0" :key="i">
+        <div class="main_title">女生宿舍</div>
+        <div v-for="(item,i) in serverData.sex0" :key="i">
           <div class="main_btn">
             <div class="btn_title">1-401</div>
             <div class="topBottom">
@@ -63,184 +63,31 @@
     },
     data() {
       return {
+        search: null,
         serverData: {
-          sex0: [
-            {
-              title: '1-401',
-              arr: [
-                {
-                  top: "张飞",
-                  bottom: "吕布"
-                },
-                {
-                  top: "张飞",
-                  bottom: "吕布"
-                },
-                {
-                  top: "张飞",
-                  bottom: "吕布"
-                },
-                {
-                  top: "张飞",
-                  bottom: "吕布"
-                }
-              ]
-            },
-            {
-              title: '1-401',
-              arr: [
-                {
-                  top: "张飞",
-                  bottom: "吕布"
-                },
-                {
-                  top: "张飞",
-                  bottom: "吕布"
-                },
-                {
-                  top: "张飞",
-                  bottom: "吕布"
-                },
-                {
-                  top: "张飞",
-                  bottom: "吕布"
-                }
-              ]
-            },
-            {
-              title: '1-401',
-              arr: [
-                {
-                  top: "张飞",
-                  bottom: "吕布"
-                },
-                {
-                  top: "张飞",
-                  bottom: "吕布"
-                },
-                {
-                  top: "张飞",
-                  bottom: "吕布"
-                },
-                {
-                  top: "张飞",
-                  bottom: "吕布"
-                }
-              ]
-            },
-            {
-              title: '1-401',
-              arr: [
-                {
-                  top: "张飞",
-                  bottom: "吕布"
-                },
-                {
-                  top: "张飞",
-                  bottom: "吕布"
-                },
-                {
-                  top: "张飞",
-                  bottom: "吕布"
-                },
-                {
-                  top: "张飞",
-                  bottom: "吕布"
-                }
-              ]
-            }
-          ],
+          sex0: [],
           sex1: [
-            {
-              title: '1-401',
-              arr: [
-                {
-                  top: "张飞",
-                  bottom: "吕布"
-                },
-                {
-                  top: "张飞",
-                  bottom: "吕布"
-                },
-                {
-                  top: "张飞",
-                  bottom: "吕布"
-                },
-                {
-                  top: "张飞",
-                  bottom: "吕布"
-                }
-              ]
-            },
-            {
-              title: '1-401',
-              arr: [
-                {
-                  top: "张飞",
-                  bottom: "吕布"
-                },
-                {
-                  top: "张飞",
-                  bottom: "吕布"
-                },
-                {
-                  top: "张飞",
-                  bottom: "吕布"
-                },
-                {
-                  top: "张飞",
-                  bottom: "吕布"
-                }
-              ]
-            },
-            {
-              title: '1-401',
-              arr: [
-                {
-                  top: "张飞",
-                  bottom: "吕布"
-                },
-                {
-                  top: "张飞",
-                  bottom: "吕布"
-                },
-                {
-                  top: "张飞",
-                  bottom: "吕布"
-                },
-                {
-                  top: "张飞",
-                  bottom: "吕布"
-                }
-              ]
-            },
-            {
-              title: '1-401',
-              arr: [
-                {
-                  top: "张飞",
-                  bottom: "吕布"
-                },
-                {
-                  top: "张飞",
-                  bottom: "吕布"
-                },
-                {
-                  top: "张飞",
-                  bottom: "吕布"
-                },
-                {
-                  top: "张飞",
-                  bottom: "吕布"
-                }
-              ]
-            }
+
           ]
         }
       }
     },
+    created() {
+      this.getServerData()
+    },
     methods: {
-
+      getServerData() {
+        this.myAjax('/SSXQ', null, (res) => {
+          this.serverData = res.body.data
+        })
+      },
+      searchFn() {
+        this.myAjax('/SSXQ', {
+          search: this.search
+        }, (res) => {
+          this.serverData = res.body.data
+        })
+      }
     }
   }
 </script>
@@ -252,19 +99,20 @@
     color: #707070;
   }
 
-  .main_child{
+  .main_child {
     width: 75%;
     height: 100%;
   }
 
-  .main_child>div{
+  .main_child>div {
     float: left;
     width: 25%;
     height: 100%;
     text-align: center;
     position: relative;
   }
-  .main_child>div>.center{
+
+  .main_child>div>.center {
     width: 25px;
     height: 25px;
     border-radius: 100%;
@@ -273,7 +121,8 @@
     text-align: center;
     color: #FFFFFF;
   }
-  .main_child>div>span{
+
+  .main_child>div>span {
     position: absolute;
     bottom: 20px;
   }

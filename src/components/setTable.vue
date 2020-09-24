@@ -291,21 +291,9 @@
         flag:false,
         currentPage3: 5,
         maxPage:2,
-        serverData: [{
-          title: '民武2001',
-          id: 1
-        }, {
-          title: '民武2002',
-          id: 2
-        }, {
-          title: '民武2003',
-          id: 3
-        }, {
-          title: '民武2004',
-          id: 4
-        }],
+        serverData: [],
         active: {
-          title: '民武2001',
+          title: '',
           id: 1
         },
         XSData:[
@@ -424,7 +412,9 @@
           this.serverData=res.body.data.serverData;
           this.maxPage=res.body.data.maxPage
           this.banMain=res.body.data.banMain
+          this.active=res.body.data.active
           this.listData=res.body.data.listData
+          
         })
       },
       searchFn(id){

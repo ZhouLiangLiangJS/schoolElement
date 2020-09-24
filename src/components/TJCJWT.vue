@@ -8,7 +8,7 @@
       @focus="onEditorFocus($event)" @ready="onEditorReady($event)" @change="onEditorChange($event)">
     </quill-editor>
     <div class="qr center-x">
-      <el-button>保 存</el-button>
+      <el-button @click="bc()">保 存</el-button>
       <el-button style="color: #707070;background-color: #FFFFFF;" @click="$router.go(-1)">返 回</el-button>
     </div>
     <Info></Info>
@@ -81,6 +81,21 @@
       }
     },
     methods: {
+      bc() {
+        if (this.title && this.content) {
+          this.myAjax('/CJWT', {
+            title: this.title,
+            html: this.content
+          }, (res) => {
+            this.$router.go(-1)
+          })
+        } else {
+          this.$message({
+            message: '请完整填写内容',
+            type: 'warning'
+          });
+        }
+      },
       // 失去焦点
       onEditorBlur(editor) {},
       // 获得焦点

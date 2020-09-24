@@ -35,7 +35,7 @@
                   <el-button class="three_button" v-for="(sun,o) in child.arr" :key="o"  @click.stop="hoverImg=o">
                     <div class="center-y leftXian"></div>
                     <span>{{sun.title}}</span>
-                    <img v-if="hoverImg==o" @click="child.arr.splice(o,1)" src="../../static/icon8.jpg" alt="" class="center-y">
+                    <img v-if="hoverImg==o" @click="del(child.arr,o)" src="../../static/icon8.jpg" alt="" class="center-y">
                   </el-button>
                 </div>
               </el-button>
@@ -55,68 +55,7 @@
     data(){
       return{
         serverData:{
-          title:"一号楼",
-          arr:[
-            {
-              title:"五楼",
-              arr:[
-                {
-                  title:'1-401',
-                  arr:[
-                    {
-                      title:"1号上铺 彭东东 民舞2001班"
-                    },
-                    {
-                      title:"1号上铺 彭东东 民舞2001班"
-                    },
-                    {
-                      title:"1号上铺 彭东东 民舞2001班"
-                    },
-                    {
-                      title:"1号上铺 彭东东 民舞2001班"
-                    }
-                  ]
-                },
-                {
-                  title:'1-401',
-                  arr:[
-                    {
-                      title:"1号上铺 彭东东 民舞2001班"
-                    }
-                  ]
-                },{
-                  title:'1-401',
-                  arr:[
-                    {
-                      title:"1号上铺 彭东东 民舞2001班"
-                    },
-                    {
-                      title:"1号上铺 彭东东 民舞2001班"
-                    },
-                    {
-                      title:"1号上铺 彭东东 民舞2001班"
-                    },
-                    {
-                      title:"1号上铺 彭东东 民舞2001班"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              title:"五楼",
-              arr:[
-                {
-                  title:'1-401',
-                  arr:[
-                    {
-                      title:"1号上铺 彭东东 民舞2001班"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
+
         },
         active0:null,
         active1:null,
@@ -127,15 +66,29 @@
       Info,
       ShowModel
     },
+    created() {
+      this.getServerData()
+    },
     methods:{
       delBL(){
         this.$refs.sml.open()
+      },
+      del(e,i){
+        this.myAjax('/setSS',{i},(res)=>{
+          e.splice(i,1)
+        })
+        
       },
       canMif(e){
         console.log(e)
       },
       move(e){
         console.log(e)
+      },
+      getServerData(){
+        this.myAjax('/setSS',null,(res)=>{
+          this.serverData=res.body.data
+        })
       }
     },
     watch:{
