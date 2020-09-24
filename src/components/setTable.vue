@@ -430,12 +430,12 @@
       searchFn(id){
         if(id){
            this.myAjax('/STSearch',{id},(res)=>{
-             this.XSData=res.body.data.listData
+             this.XSData=res.body.data
            })
         }
         this.flag=true
         this.myAjax('/STSearch',null,(res)=>{
-          this.XSData=res.body.data.listData
+          this.XSData=res.body.data
         })
       }
     }
